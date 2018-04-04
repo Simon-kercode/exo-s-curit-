@@ -1,0 +1,16 @@
+{
+    "name": "freyr/rss-manager",
+    "description": "web app de gestion et partage de flux rss",
+    "authors": [
+        {
+            "name": "Shinfreyr",
+            "email": "fh.lamodiere@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4" :{
+            "Project\\" : "./src/"
+        }
+    },
+    "require": {}
+}
