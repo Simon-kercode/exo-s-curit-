@@ -4,27 +4,26 @@
 
 <!-- Welcome message +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 <div class="alert alert-success" role="alert">
-    <h1 class="alert-heading">Well done!</h1>
-    <p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p>
+    <h1 class="alert-heading">Flux RSS Manager</h1>
+    <p>Le premier réseau social de veille partagé...</p>
     <hr>
-    <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
+    <p class="mb-0">Gérrez &amp; Partagez vos Flux RSS!</p>
 </div>
 
 <!-- Button trigger modal ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-<button type="button" class="btn btn-primary col-12" data-toggle="modal" data-target="#exampleModalLong">
-  Launch demo modal
-</button>
+<button type="button" class="btn btn-primary col-12" data-toggle="modal" data-target="#exampleModalLong">Flux RSS du jour: <?= htmlspecialchars($url); ?></button>
 
 <!-- Modal +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle"><?= htmlspecialchars($url); ?></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+            <!-- Flux RSS ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
             <div class="modal-body">
                 <?php
                     echo '<ul>';
@@ -44,7 +43,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-primary">Savegarder Le flux</button>
             </div>
         </div>
     </div>
@@ -52,13 +51,27 @@
 
 <!-- Jumbotron Chat ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 <div class="jumbotron">
-    <h1 class="display-4">Hello, world!</h1>
-    <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+    <h2 class="display-4">ChatBox :</h2>
+    <p class="lead">Venez discutez du Flux RSS du jours!</p>
     <hr class="my-4">
-    <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+    <h3>Pseudo :</h3>
+    <p><span>Date et heure</span><p>
+    <p>Contenu du chatcomment</p>
     <p class="lead">
-        <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+        <!-- Collapse Chat Form ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+        <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Link with href</a>
     </p>
+    <div class="collapse" id="collapseExample">
+        <div class="card card-body">
+            <form>
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Example textarea</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 
 <?php
