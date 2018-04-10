@@ -48,31 +48,31 @@
         </div>
     </div>
 </div>
-
-<!-- Jumbotron Chat ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-<div class="jumbotron">
-    <h2 class="display-4">ChatBox :</h2>
-    <p class="lead">Venez discutez du Flux RSS du jours!</p>
-    <hr class="my-4">
-    <h3>Pseudo :</h3>
-    <p><span>Date et heure</span><p>
-    <p>Contenu du chatcomment</p>
-    <p class="lead">
+<!-- Card ChatBox +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<div class="card chatBox">
+    <h2 class="card-header">ChatBox :</h2>
+    <div class="card-body">
+        <h5 class="card-title">Venez discutez du Flux RSS du jours!</h5>
+        <hr class="my-4">
+        <h3>Pseudo :</h3>
+        <p><span>Date et heure</span><p>
+        <p>Contenu du chatcomment</p>
         <!-- Collapse Chat Form ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
         <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Link with href</a>
-    </p>
-    <div class="collapse" id="collapseExample">
-        <div class="card card-body">
-            <form>
-                <div class="form-group">
-                    <label for="exampleFormControlTextarea1">Example textarea</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
-            </form>
+        <div class="collapse" id="collapseExample">
+            <div class="card card-body">
+                <form>
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Example textarea</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>
+
 
 <?php
     $content = ob_get_clean();
