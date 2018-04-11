@@ -1,14 +1,56 @@
 /* Background animated +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-#gradient {
-    position: absolute;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    background: #836997;
-  }
+body{
+    height: 100vh;
+    background: linear-gradient(120deg, #8509be, #ff5100);
+    background-size: 400% 400%;
+    animation: BackgroundAnimation 30s ease infinite;
+}
 
-  /* ChatBox ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-  .chatBox{
-      margin-bottom: 20px;
-  }
+@keyframes BackgroundAnimation{
+    0%{background-position: 0% 50%;}
+    50%{background-position: 100% 50%;}
+    100%{background-position: 0% 50%;}
+}
+
+/* NavBar +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+.navbar,.dropdown-menu{
+    background: linear-gradient(120deg, #8509be, #ff5100);
+    background-size: 400% 400%;
+    animation: BackgroundAnimation 30s ease infinite;
+}
+
+.dropdown-item{
+    color: white;
+}
+
+/* Welcome ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+.welcome{
+    background-color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+}
+  
+/* ChatBox ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+.chatBox{
+    margin-bottom: 20px;
+}
+
+.card{
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.chatBox .card-header,.modal-header{
+    background: linear-gradient(120deg, #00e1ff, #7bff00);
+    background-size: 400% 400%;
+    animation: BackgroundAnimation 30s ease infinite;
+}
+
+.cardComment{
+    margin: 30px 0;
+}
+
+/* Footer ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+footer .card-body{
+    background: linear-gradient(120deg, #00e1ff, #7bff00);
+    background-size: 400% 400%;
+    animation: BackgroundAnimation 30s ease infinite;
+}
