@@ -3,7 +3,7 @@
 <?php ob_start(); ?>
 
 <!-- Welcome message +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-<div class="alert welcome" role="alert">
+<div class="alert welcome" id="up" role="alert">
     <h1 class="alert-heading">Flux RSS Manager</h1>
     <p>Le premier réseau social de veille partagé...</p>
     <hr>
@@ -27,17 +27,17 @@
             <div class="modal-body">
                 <?php
                     echo '<ul>';
-                    foreach ($rss->channel->item as $item) {
-                        $datetime = date_create($item->pubDate);
-                        $date = date_format($datetime, 'd M Y, H\hi');
-                        echo '<li>';
-                            if($item->category) {
-                                echo $item->category.' : ';
-                            }
-                            echo '<a href="'.$item->link.'">'.$item->title.'</a> ('.$date.')'
-                            .$item->description;
-                        echo '</li>';
-                    }
+                        foreach ($rss->channel->item as $item) {
+                            $datetime = date_create($item->pubDate);
+                            $date = date_format($datetime, 'd M Y, H\hi');
+                            echo '<li>';
+                                if($item->category) {
+                                    echo $item->category.' : ';
+                                }
+                                echo '<a href="'.$item->link.'">'.$item->title.'</a> ('.$date.')'
+                                .$item->description;
+                            echo '</li>';
+                        }
                     echo '</ul>';
                 ?>
             </div>

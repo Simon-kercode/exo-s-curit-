@@ -48,9 +48,33 @@ body{
     margin: 30px 0;
 }
 
+/* Forms Inscription +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+#inscriptionForm{
+    background-color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 20px;
+}
+
+#checkBot{
+    text-align: center;
+}
+
+.btn-validation{
+    margin-top: 20px;
+}
+
+label,small{
+    padding-left: 10px;
+}
+
 /* Footer ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 footer .card-body{
     background: linear-gradient(120deg, #00e1ff, #7bff00);
     background-size: 400% 400%;
     animation: BackgroundAnimation 30s ease infinite;
+}
+
+/* Error +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+.error{
+    background-color: black;
+    color: red;
 }

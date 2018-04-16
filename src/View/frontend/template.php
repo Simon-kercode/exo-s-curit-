@@ -49,12 +49,11 @@
                             <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Connexion/Inscription</a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="#">Connexion</a>
-                                <a class="dropdown-item" href="#">Inscription</a>
+                                <a class="dropdown-item" href="index.php?action=inscription">Inscription</a>
                             </div>
                         </li>
                     </ul>
-                </div>
-            
+                </div>            
             </nav>
         </header>
 
@@ -70,7 +69,7 @@
                             <a class="nav-link" href="#">Mentions légals</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link disabled" href="index.php">&uarr; Up</a>
+                            <a class="nav-link disabled" href="#up">&uarr; Up</a>
                         </li>
                     </ul>
                 </div>
