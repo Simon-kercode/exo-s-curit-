@@ -7,8 +7,10 @@
     require_once __DIR__.'/vendor/autoload.php';
 
     //Rooter ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    try{
+    try {
+
         $controller= new \Project\Controller\AllUserController();
+        
         //Action GET and DB GET +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         if(isset($_GET['action']) && isset($_GET['db'])) {
 #AllUser    //Inscription Data Base +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -68,7 +70,7 @@
     }
 
     //If error, echo message and index return
-    catch(Exception $e){
+    catch(Exception $e) {
         echo '<h3 class="error">Erreur : '. $e->getMessage() .'</h3>';
         $controller->index();
     }
