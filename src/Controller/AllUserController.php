@@ -18,6 +18,11 @@
             require('src/view/frontend/inscriptionView.php');
         }
 
+        //Connection View ++++++++++++++++++++++++++++++++++++++++++++++++++
+        function connection() {
+            require('src/view/frontend/connectionView.php');
+        }
+
         //Inscription Data Base ++++++++++++++++++++++++++++++++++++++++++++
         function inscriptionDb() {
             $pseudo = htmlspecialchars($_POST['pseudo']);
@@ -32,13 +37,18 @@
             //If pseudo or email already exist do exception
             if($result['pseudoAccount'] === $pseudo || $result['emailAccount'] === $email){
                 echo '<h3 class="error">Erreur : Pseudo ou Email déja existant </h3>';
-                $controller= new \Project\Controller\AllUserController();
-                $controller->inscription();
+                $allUserController= new \Project\Controller\AllUserController();
+                $allUserController->inscription();
             }        
             // Insert Data Base
             else{
                 $accountManager = new \Project\Model\AccountManager();
                 $request = $accountManager->postInscriptionDb($pseudo,$email,$password);
             }
+        }
+
+        //Connection Data Base +++++++++++++++++++++++++++++++++++++++++++++
+        function connectionDb() {
+            echo 'coucou';
         }
     }

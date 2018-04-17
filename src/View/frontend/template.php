@@ -48,7 +48,7 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Connexion/Inscription</a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Connexion</a>
+                                <a class="dropdown-item" href="index.php?action=connection">Connexion</a>
                                 <a class="dropdown-item" href="index.php?action=inscription">Inscription</a>
                             </div>
                         </li>
