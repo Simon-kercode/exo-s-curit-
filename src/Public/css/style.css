@@ -73,8 +73,13 @@ footer .card-body{
     animation: BackgroundAnimation 30s ease infinite;
 }
 
-/* Error +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+/* Error  and Validate +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 .error{
     background-color: black;
     color: red;
+}
+
+.validate{
+    background-color: #7bff00;
+    color: white;
 }

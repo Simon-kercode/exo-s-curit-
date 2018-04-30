@@ -46,13 +46,40 @@
                             <a class="nav-link" href="index.php">Accueil <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Connexion/Inscription</a>
+                            <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <?php
+                                    if(isset($_SESSION['rssManagerId'])) {
+                                        echo 'Déconnexion';
+                                    }
+                                    else {
+                                        echo 'Connexion/Inscription';
+                                    }
+                                ?>
+                            </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="index.php?action=connection">Connexion</a>
-                                <a class="dropdown-item" href="index.php?action=inscription">Inscription</a>
+                                <?php    
+                                    if(isset($_SESSION['rssManagerId'])) {
+                                        echo '<a class="dropdown-item" href="index.php?action=deconnection&session=ok">Déconnexion</a>';
+                                    }
+                                    else {
+                                        echo '
+                                            <a class="dropdown-item" href="index.php?action=connection">Connexion</a>
+                                            <a class="dropdown-item" href="index.php?action=inscription">Inscription</a>
+                                        ';
+                                    }
+                                ?>
                             </div>
                         </li>
                     </ul>
+                    <?php
+                        if(isset($_SESSION['rssManagerId'])) {
+                            echo 
+                                '<a class="navbar-brand" href="index.php">
+                                    <img width="30" height="30" alt="" src="src/public/images/'. $_SESSION['rssManagerAvatar'] . '" alt="Avatar" />
+                                    Bienvenue '.htmlspecialchars($_SESSION['rssManagerPseudo'])
+                                .'</a>';
+                        }
+                    ?>
                 </div>            
             </nav>
         </header>

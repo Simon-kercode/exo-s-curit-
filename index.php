@@ -9,8 +9,9 @@
     //Rooter ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     try {
 
-        $allUserController= new \Project\Controller\AllUserController();
-        
+        $allUserController = new \Project\Controller\AllUserController();
+        $userConnectedController = new \Project\Controller\UserConnectedController();
+
         //Action GET and DB GET +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         if(isset($_GET['action']) && isset($_GET['db'])) {
 #AllUser    //Inscription Data Base +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -18,22 +19,28 @@
                 if(isset($_POST['pseudo']) && isset($_POST['email']) && isset($_POST['password']) && isset($_POST['passwordComp'])) {
                     if(isset($_POST['checkHuman'])) {   
                         if($_POST['pseudo'] !== '' && $_POST['email'] !== '' && $_POST['password'] !== '' && $_POST['passwordComp'] && $_POST['checkHuman'] == 'ok') {
-                            if($_POST['password'] === $_POST['passwordComp']) {
-                                //Strongest Paswword Control ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-                                $uppercase = preg_match('@[A-Z]@', $_POST['password']);
-                                $lowercase = preg_match('@[a-z]@', $_POST['password']);
-                                $number    = preg_match('@[0-9]@', $_POST['password']);
-                                if($uppercase && $lowercase && $number && strlen($_POST['password']) >= 8) {
-                                    $allUserController->inscriptionDb();
+                            if(filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {    
+                                if($_POST['password'] === $_POST['passwordComp']) {
+                                    //Strongest Paswword Control ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                                    $uppercase = preg_match('@[A-Z]@', $_POST['password']);
+                                    $lowercase = preg_match('@[a-z]@', $_POST['password']);
+                                    $number    = preg_match('@[0-9]@', $_POST['password']);
+                                    if($uppercase && $lowercase && $number && strlen($_POST['password']) >= 8) {
+                                        $allUserController->inscriptionDb();
+                                    }
+                                    //Exception +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++      
+                                    else{
+                                        throw new Exception('Mot de passe non conforme');
+                                    }                           
                                 }
-                                //Exception +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++      
-                                else{
-                                    throw new Exception('Mot de passe non conforme');
-                                }                           
+                                //Exception ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++     
+                                else {
+                                    throw new Exception('Mot de passe non concordant');    
+                                }
                             }
-                            //Exception      
+                            //Exception +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
                             else {
-                                throw new Exception('Mot de passe non concordant');    
+                                throw new Exception('Mail non valide');
                             }
                         }
                         //Exception ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -72,7 +79,13 @@
                 throw new Exception('Variable inattendu');
             }            
         }
-        
+        //Action GET ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        elseif(isset($_GET['action']) && isset($_GET['session'])) {
+#UserCo     //Deconnection Session       
+            if($_GET['action'] === 'deconnection' && $_GET['session'] === 'ok') {
+                $userConnectedController->deconnectionSession();
+            }
+        }
         //Action GET ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         elseif(isset($_GET['action'])) {
 #AllUser    //Inscription View ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    
