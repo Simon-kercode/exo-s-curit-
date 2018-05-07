@@ -1,7 +1,7 @@
 /* Background animated +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 body{
     height: 100vh;
-    background: linear-gradient(120deg, #8509be, #ff5100);
+    background: linear-gradient(120deg, #8509be, #ff7c0d);
     background-size: 400% 400%;
     animation: BackgroundAnimation 30s ease infinite;
 }
@@ -14,7 +14,7 @@ body{
 
 /* NavBar +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 .navbar,.dropdown-menu{
-    background: linear-gradient(120deg, #8509be, #ff5100);
+    background: linear-gradient(120deg, #8509be, #ff7c0d);
     background-size: 400% 400%;
     animation: BackgroundAnimation 30s ease infinite;
 }
@@ -32,6 +32,7 @@ body{
 /* ChatBox ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 .chatBox{
     margin-bottom: 20px;
+    height: 500px;
 }
 
 .card{
@@ -39,13 +40,17 @@ body{
 }
 
 .chatBox .card-header,.modal-header{
-    background: linear-gradient(120deg, #00e1ff, #7bff00);
+    background: linear-gradient(120deg, #00e1ff, #b4ff0d);
     background-size: 400% 400%;
     animation: BackgroundAnimation 30s ease infinite;
 }
 
 .cardComment{
     margin: 30px 0;
+}
+
+.scroll{
+    overflow-y: scroll;
 }
 
 /* Forms Inscription +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
@@ -68,7 +73,7 @@ label,small{
 
 /* Footer ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 footer .card-body{
-    background: linear-gradient(120deg, #00e1ff, #7bff00);
+    background: linear-gradient(120deg, #00e1ff, #b4ff0d);
     background-size: 400% 400%;
     animation: BackgroundAnimation 30s ease infinite;
 }

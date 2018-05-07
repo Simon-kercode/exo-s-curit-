@@ -50,56 +50,43 @@
 </div>
 
 <!-- Card ChatBox +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-<div class="card chatBox">
+<div class="card chatBox content">
     <h2 class="card-header">ChatBox :</h2>
-    <div class="card-body">
+    <div class="card-body scroll">
         <h5 class="card-title">Venez discutez du Flux RSS du jours!</h5>
-        <hr class="my-4">
-        <!-- Card Comment +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-        <div class="card cardComment">
-            <div class="card-header">
-                <a class="navbar-brand" href="#">
-                    <img src="src/Public/images/AvatarTest.jpg" width="30" height="30" class="d-inline-block align-top" alt="">
-                    Pseudo
-                </a>
-            </div>
-            <div class="card-body">
-                <h5 class="card-title">Contenu du Chat Comment</h5>
-            </div>
-            <div class="card-footer text-muted">
-                Date
-            </div>
+        <hr class="my-4" >
+        <!-- Card Comment +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->        
+        <div id="articles">    
+            <!--<div class="card cardComment">
+                <div class="card-header">
+                    <a class="navbar-brand" href="#">
+                        <img src="src/Public/images/'.htmlspecialchars($db['avatarAccount']).'" width="30" height="30" class="d-inline-block align-top" alt="">'
+                        .' '.htmlspecialchars($db['pseudoAccount']).
+                    '</a>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">'.htmlspecialchars($db['contentChat']).'</h5>
+                </div>
+                <div class="card-footer text-muted">'
+                    .htmlspecialchars($db['dateChat']).
+                '</div>
+            </div>-->
+        </div>       
+    </div> 
+    <!-- Collapse Chat Form ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <a class="btn btn-info" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Ecrire dans le Chat</a>
+    <div class="collapse" id="collapseExample">
+        <div class="card card-body">
+            <form>
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Votre message</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    <button type="submit" class="btn btn-info">Envoyer</button>
+                </div>
+            </form>
         </div>
-        <div class="card cardComment">
-            <div class="card-header">
-                <a class="navbar-brand" href="#">
-                    <img src="src/Public/images/AvatarTest.jpg" width="30" height="30" class="d-inline-block align-top" alt="">
-                    Pseudo
-                </a>
-            </div>
-            <div class="card-body">
-                <h5 class="card-title">Contenu du Chat Comment</h5>
-            </div>
-            <div class="card-footer text-muted">
-                Date
-            </div>
-        </div>
-        <!-- Collapse Chat Form ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-        <a class="btn btn-info" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Ecrire dans le Chat</a>
-        <div class="collapse" id="collapseExample">
-            <div class="card card-body">
-                <form>
-                    <div class="form-group">
-                        <label for="exampleFormControlTextarea1">Votre message</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                        <button type="submit" class="btn btn-info">Envoyer</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+    </div>   
 </div>
-
 
 <?php
     $content = ob_get_clean();
