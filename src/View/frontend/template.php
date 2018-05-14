@@ -6,7 +6,7 @@
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<title><?= $title ?></title>		
+        <title><?= $title ?></title>		
 		<meta name="description" content="Flux RSS Manager, Faites votre veille en réseau!" />
 		<meta name="keywords" content="flux, rss, manager, veille, reseau, social, francois, hugues, lamodiere" />
 		<!-- Meta Facebook +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->        
@@ -23,6 +23,8 @@
         <meta name="twitter:image" content="" /> <!-- !!!!!!!!!!!!!!!!!!!!! A remplir lors de la MeL -->
         <!-- Stylesheet Bootstrap v4 ++++++++++++++++++++++++++++++++++++++++++++++++ -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> 
+        <!-- Stylesheet Google Font +++++++++++++++++++++++++++++++++++++++++++++++++ -->
+        <link href="https://fonts.googleapis.com/css?family=Skranji" rel="stylesheet"> 
         <!-- Stylesheet +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
         <link href="src/Public/css/style.css" rel="stylesheet" /> 
 

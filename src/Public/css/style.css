@@ -39,6 +39,19 @@ body{
     background-color: rgba(255, 255, 255, 0.9);
 }
 
+.card .navbar-brand{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.card .navbar-brand p{
+    margin-left: 12px;
+    font-size: 1.25em;
+    color:#8509be;
+    font-family: 'Skranji', cursive;
+}
+
 .chatBox .card-header,.modal-header{
     background: linear-gradient(120deg, #00e1ff, #b4ff0d);
     background-size: 400% 400%;

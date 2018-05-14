@@ -90,8 +90,8 @@
             // Control status +++++++++++++++++++++++++++++++++++++++++++++
             if(!$result['statusAccount'] || $result['statusAccount'] === "Bann") {
                 echo '<h3 class="error">Erreur : Le compte que vous cherchez à connecter n\'existe pas ou est banni </h3>';
-                    $allUserController= new \Project\Controller\AllUserController();
-                    $allUserController->connection();
+                $allUserController= new \Project\Controller\AllUserController();
+                $allUserController->connection();
             }
             else {
                 // Password Verify ++++++++++++++++++++++++++++++++++++
@@ -110,6 +110,11 @@
                     $_SESSION['rssManagerAvatar'] = htmlspecialchars($result['avatarAccount']);
 
                     header("Refresh:0; index.php");
+                }
+                else {
+                    echo '<h3 class="error">Erreur : Mauvais mot de passe </h3>';
+                    $allUserController= new \Project\Controller\AllUserController();
+                    $allUserController->connection();
                 }
             }
         }

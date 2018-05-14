@@ -9,4 +9,14 @@
             session_destroy();
             header("Refresh:0; index.php");
         }
+
+        //Chat comment Data Base ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        function chatComment() {
+            $chatContent = htmlspecialchars($_POST['chatContent']);
+            $idAccount = htmlspecialchars($_SESSION['rssManagerId']);
+
+            $chatManager = new \Project\Model\ChatManager();
+            $request= $chatManager->chatPost($chatContent,$idAccount);
+            header("Refresh:0; index.php");
+        }
     }
