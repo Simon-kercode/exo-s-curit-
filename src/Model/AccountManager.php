@@ -49,5 +49,16 @@
             return $request;
         }
 
+        //Account Management Request ++++++++++++++++++++++++++++++++++++
+        function accountManagementRequest($idAccount) {
+            // Data Base Connection
+            $db=$this->dbConnect();
+            // Account recuperation 
+            $request = $db->prepare('SELECT * FROM accounts WHERE idAccount=?');
+            $request -> execute(array($idAccount));
+            
+            return $request;
+        }
+
         
     }

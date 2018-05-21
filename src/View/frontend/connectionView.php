@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<?php $title = "Flux RSS Manager, Inscription"; ?>
+<?php $title = "Flux RSS Manager, Connexion"; ?>
 <?php ob_start(); ?>
 
 <!-- Welcome message +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->

@@ -111,7 +111,11 @@
 #AllUser    //Connection View ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
             elseif($_GET['action'] === 'connection') {
                 $allUserController->connection();
-            }            
+            }
+#UserCo     //Profil Management ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+            elseif($_GET['action'] === 'accountManagement') {
+                $userConnectedController->accountManagement();
+            }                        
             //Exception ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
             else {
                 throw new Exception('Variable inattendu');

@@ -16,7 +16,18 @@
             $idAccount = htmlspecialchars($_SESSION['rssManagerId']);
 
             $chatManager = new \Project\Model\ChatManager();
-            $request= $chatManager->chatPost($chatContent,$idAccount);
+            $request = $chatManager->chatPost($chatContent,$idAccount);
             header("Refresh:0; index.php");
+        }
+
+        //Profil Management ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        function accountManagement() {
+            $idAccount = htmlspecialchars($_SESSION['rssManagerId']);
+
+            $accountManager = new \Project\Model\AccountManager();
+            $request = $accountManager->accountManagementRequest($idAccount);
+
+            $result = $request->fetch();
+            require('src/view/frontend/accountManagementView.php');
         }
     }
