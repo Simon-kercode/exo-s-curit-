@@ -60,5 +60,44 @@
             return $request;
         }
 
+        //Email Management Control ++++++++++++++++++++++++++++++++++++++
+        function emailManagementControl($email) {
+            // Data Base Connection
+            $db=$this->dbConnect();
+            // Account recuperation 
+            $request = $db->prepare('SELECT emailAccount FROM accounts WHERE emailAccount=?');
+            $request -> execute(array($email));
+            
+            return $request;
+        }
+
+        //Email Management Update ++++++++++++++++++++++++++++++++++++++++
+        function emailManagementUpdate($idAccount,$email) {
+            // Data Base Connection
+            $db=$this->dbConnect();
+            // Account recuperation 
+            $request = $db->prepare('UPDATE accounts SET emailAccount=? WHERE idAccount=?');
+            $request -> execute(array($email,$idAccount));
+        }
+
+        //Pasword Management Control +++++++++++++++++++++++++++++++++++++
+        function passwordManagementControl($idAccount) {
+            // Data Base Connection
+            $db=$this->dbConnect();
+            // Account recuperation 
+            $request = $db->prepare('SELECT passAccount FROM accounts WHERE idAccount=?');
+            $request -> execute(array($idAccount));
+            
+            return $request;
+        }
+
+        //Password Management Update ++++++++++++++++++++++++++++++++++++++++
+        function passwordManagementUpdate($idAccount,$password) {
+            // Data Base Connection
+            $db=$this->dbConnect();
+            // Account recuperation 
+            $request = $db->prepare('UPDATE accounts SET passAccount=? WHERE idAccount=?');
+            $request -> execute(array($password,$idAccount));
+        }
         
     }

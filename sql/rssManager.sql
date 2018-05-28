@@ -13,6 +13,7 @@ CREATE TABLE accounts(
         emailAccount  Varchar (60) NOT NULL ,
         avatarAccount Varchar (275) NOT NULL ,
         statusAccount Varchar (25) NOT NULL ,
+        passAccount   Varchar (255) NOT NULL ,
         PRIMARY KEY (idAccount )
 )ENGINE=InnoDB;
 
@@ -62,6 +63,7 @@ CREATE TABLE posts(
 CREATE TABLE cercleLink(
         idCercleLink int (11) Auto_increment  NOT NULL ,
         nameCircle   Varchar (275) NOT NULL ,
+        idAccount    Int NOT NULL ,
         PRIMARY KEY (idCercleLink )
 )ENGINE=InnoDB;
 
@@ -75,6 +77,7 @@ CREATE TABLE comments(
         contentComment Varchar (1000) NOT NULL ,
         dateComment    Date NOT NULL ,
         idPost         Int NOT NULL ,
+        idAccount      Int NOT NULL ,
         PRIMARY KEY (idComment )
 )ENGINE=InnoDB;
 
@@ -100,6 +103,7 @@ CREATE TABLE invitation(
         idInvitation      int (11) Auto_increment  NOT NULL ,
         contentInvitation Varchar (275) NOT NULL ,
         dateInvitation    Date NOT NULL ,
+        idAccount         Int NOT NULL ,
         PRIMARY KEY (idInvitation )
 )ENGINE=InnoDB;
 
@@ -138,8 +142,11 @@ CREATE TABLE invite(
 
 ALTER TABLE rssCategories ADD CONSTRAINT FK_rssCategories_idAccount FOREIGN KEY (idAccount) REFERENCES accounts(idAccount);
 ALTER TABLE posts ADD CONSTRAINT FK_posts_idRss FOREIGN KEY (idRss) REFERENCES rss(idRss);
+ALTER TABLE cercleLink ADD CONSTRAINT FK_cercleLink_idAccount FOREIGN KEY (idAccount) REFERENCES accounts(idAccount);
 ALTER TABLE comments ADD CONSTRAINT FK_comments_idPost FOREIGN KEY (idPost) REFERENCES posts(idPost);
+ALTER TABLE comments ADD CONSTRAINT FK_comments_idAccount FOREIGN KEY (idAccount) REFERENCES accounts(idAccount);
 ALTER TABLE chats ADD CONSTRAINT FK_chats_idAccount FOREIGN KEY (idAccount) REFERENCES accounts(idAccount);
+ALTER TABLE invitation ADD CONSTRAINT FK_invitation_idAccount FOREIGN KEY (idAccount) REFERENCES accounts(idAccount);
 ALTER TABLE connect ADD CONSTRAINT FK_connect_idAccount FOREIGN KEY (idAccount) REFERENCES accounts(idAccount);
 ALTER TABLE connect ADD CONSTRAINT FK_connect_idCercleLink FOREIGN KEY (idCercleLink) REFERENCES cercleLink(idCercleLink);
 ALTER TABLE deffine ADD CONSTRAINT FK_deffine_idRssCategory FOREIGN KEY (idRssCategory) REFERENCES rssCategories(idRssCategory);

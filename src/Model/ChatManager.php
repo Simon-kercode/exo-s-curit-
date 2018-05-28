@@ -25,4 +25,13 @@
             
             return $request;           
         }
+
+        //Supress Chat ++++++++++++++++++++++++++++++++++++++++
+        function supressChat($idAccount) {
+            // Data Base Connection
+            $db=$this->dbConnect();
+            // Chat supress 
+            $request = $db->prepare('DELETE FROM chats WHERE idAccount = ?');
+            $request -> execute(array($idAccount));
+        }
     }

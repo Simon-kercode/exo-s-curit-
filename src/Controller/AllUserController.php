@@ -12,17 +12,22 @@
             $i = 0;
             
             $chatManager = new \Project\Model\ChatManager();
-            $request= $chatManager->chatRequest();
-            //Data Base to Jason +++++++++++++++++++++++++++
-            while($db= $request->fetch()) {
-                $jsonArray[$i]= ['Pseudo'=>htmlspecialchars($db['pseudoAccount']),'Avatar'=>htmlspecialchars($db['avatarAccount']),'ContentChat'=>htmlspecialchars($db['contentChat']),'Date'=>htmlspecialchars($db['dateChat'])];
-                $i++;
+            $request = $chatManager->chatRequest();
+            $result = $request->fetch();
+            if($result!='') {
+                $chatManager = new \Project\Model\ChatManager();
+                $request = $chatManager->chatRequest();    
+                //Data Base to Jason +++++++++++++++++++++++++++
+                while($db= $request->fetch()) {
+                    $jsonArray[$i]= ['Pseudo'=>htmlspecialchars($db['pseudoAccount']),'Avatar'=>htmlspecialchars($db['avatarAccount']),'ContentChat'=>htmlspecialchars($db['contentChat']),'Date'=>htmlspecialchars($db['dateChat'])];
+                    $i++;
+                }
+                $contentJason = json_encode($jsonArray);
+                $chat = 'src/Public/js/chat.json';
+                $chatFiles = fopen($chat, 'w+');
+                fwrite($chatFiles, $contentJason);
+                fclose($chatFiles);
             }
-            $contentJason = json_encode($jsonArray);
-            $chat = 'src/Public/js/chat.json';
-            $chatFiles = fopen($chat, 'w+');
-            fwrite($chatFiles, $contentJason);
-            fclose($chatFiles);
             require('src/view/frontend/indexView.php');
         }
 

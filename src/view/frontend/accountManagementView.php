@@ -95,6 +95,7 @@
     <div class="card-footer text-muted">
         Conformément à la RGPD en vigueur depuis le 25/05/2018, vos données transmise ne seront ni utilisé à but ciblage comercial, ni revendu à d'autre organisme. La supression de votre compte aura belle et bien la finalité de la destruction total de vos données.
     </div>
+</div>
 
 <?php
     $content = ob_get_clean();

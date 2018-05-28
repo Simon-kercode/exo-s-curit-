@@ -90,6 +90,73 @@
                     throw new Exception('Variable inattendu');
                 }
             }
+#UserCo     //Mail Management ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+            elseif($_GET['action'] === 'mailManagement' && $_GET['db'] === 'ok') {
+                if(isset($_POST['email'])) {
+                    if($_POST['email'] != '') {
+                        if(filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+                            $userConnectedController->mailManagement();
+                        }
+                        //Exception +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                        else {
+                            throw new Exception('Mail non valide');
+                        }
+                    }
+                    //Exception ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                    else {
+                        throw new Exception('Champs manquants');
+                    }
+                }
+                //Exception ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                else {
+                    throw new Exception('Variable inattendu');
+                }                
+            }
+#UserCo     //Password Management ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+            elseif($_GET['action'] === 'passwordManagement' && $_GET['db'] === 'ok') {
+                if(isset($_POST['oldPassword']) && isset($_POST['password']) && isset($_POST['passwordComp'])) {
+                    if($_POST['oldPassword'] != '' && $_POST['password'] != '' && $_POST['passwordComp'] != '') {
+                        if($_POST['password'] === $_POST['passwordComp']) {
+                            //Strongest Paswword Control ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                            $uppercase = preg_match('@[A-Z]@', $_POST['password']);
+                            $lowercase = preg_match('@[a-z]@', $_POST['password']);
+                            $number    = preg_match('@[0-9]@', $_POST['password']);
+                            if($uppercase && $lowercase && $number && strlen($_POST['password']) >= 8) {
+                                $userConnectedController->passwordManagement();
+                            }
+                            //Exception +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++      
+                            else{
+                                throw new Exception('Mot de passe non conforme');
+                            }                           
+                        }
+                    }
+                    //Exception ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                    else {
+                        throw new Exception('Champs manquants');
+                    }
+
+                }
+                //Exception ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                else {
+                    throw new Exception('Variable inattendu');
+                }
+            }
+#UserCo     //Account Supress ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+            elseif($_GET['action'] === 'deletAccount' && $_GET['db'] === 'ok') {
+                if(isset($_POST['passwordDel'])) {
+                    if($_POST['passwordDel'] != '') {
+                        $userConnectedController->deletAccount();
+                    }
+                    //Exception ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                    else {
+                        throw new Exception('Champs manquants');
+                    }
+                }
+                //Exception ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                else {
+                    throw new Exception('Variable inattendu');
+                }
+            }
             //Exception ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
             else {
                 throw new Exception('Variable inattendu');
