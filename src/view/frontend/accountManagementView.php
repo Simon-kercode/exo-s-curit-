@@ -16,6 +16,19 @@
     </div>
     <div class="card-body">
         <h5 class="card-title">
+            <img src="src/Public/images/<?=htmlspecialchars($result['avatarAccount'])?>" alt="Avatar" />
+            <form enctype="multipart/form-data" action="index.php?action=uploadAvatar" method="post" class="col-12">
+                <fieldset>
+                    <legend><h2>Avatar: <span class="infoAvatar"> (800x800 pixel & 1Mo maximum) </span></h2></legend>
+                    <p>
+                        <label for="uploadFile" title="Recherchez le fichier à uploader !">Envoyer le fichier :</label>
+                        <input type="hidden" name="MAX_FILE_SIZE" value="<?php echo MAX_SIZE; ?>" />
+                        <input name="file" type="file" id="uploadFile" />
+                        <input type="submit" class="btn btn-info" name="submit" value="Uploader" />
+                    </p>
+                </fieldset>
+            </form>
+
             <?= 'E-Mail: ' . htmlspecialchars($result['emailAccount']) ?>
         </h5>
         <a class="btn btn-primary" data-toggle="collapse" href="#mailManagement" role="button" aria-expanded="false" aria-controls="collapseExample">

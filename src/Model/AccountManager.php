@@ -99,5 +99,22 @@
             $request = $db->prepare('UPDATE accounts SET passAccount=? WHERE idAccount=?');
             $request -> execute(array($password,$idAccount));
         }
-        
+
+        //Supress Account ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        function supressAccount($idAccount) {
+            // Data Base Connection
+            $db=$this->dbConnect();
+            // Account supress 
+            $request = $db->prepare('DELETE FROM accounts WHERE idAccount = ? AND statusAccount != ? AND statusAccount != ?');
+            $request -> execute(array($idAccount,"Admin","SAdmin"));
+        }
+
+        //Avatar Update ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        function postAvatar($nameImage,$id) {
+            // Data Base Connection
+            $db=$this->dbConnect();
+            // Account update 
+            $request = $db->prepare('UPDATE accounts SET avatarAccount=? WHERE idAccount=?');
+            $request -> execute(array($nameImage,$id));
+        }        
     }

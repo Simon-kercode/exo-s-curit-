@@ -103,11 +103,32 @@
                 $inviteManager = new \Project\Model\InviteManager();
                 $inviteManager->supressInvite($idAccount);
 
-                $invitation = new \project\Model\InvitationManager();
-                $invitation->supressInvitation($idAccount);
-
                 $chatManager = new \Project\Model\ChatManager();
                 $chatManager->supressChat($idAccount);
+
+                $connectManager = new \Project\Model\ConnectManager();
+                $connectManager->supressConnect($idAccount);
+
+                $commentManager = new \Project\Model\CommentManager();
+                $commentManager->supressComment($idAccount);
+
+                $rssCategoryManager = new \Project\Model\RssCategoryManager();
+                $request = $rssCategoryManager->controlRssCategory($idAccount);
+
+                while ($db1 = $request->fetch()) {
+                    $idRssCategory = htmlspecialchars($db1['idRssCategory']);
+                    $deffineManager = new \Project\Model\DeffineManager();
+                    $deffineManager->supressDeffine($idRssCategory);
+                }
+                
+                $rssCategoryManager = new \Project\Model\RssCategoryManager();
+                $rssCategoryManager->supressRssCategory($idAccount);
+
+                $accountManager = new \Project\Model\AccountManager();
+                $accountManager->supressAccount($idAccount);
+                
+                $userConnectedController = new \Project\Controller\UserConnectedController();
+                $userConnectedController->deconnectionSession();
             }
             //Error
             else {
@@ -115,5 +136,99 @@
                 $userConnectedController = new \Project\Controller\UserConnectedController();
                 $userConnectedController->accountManagement();
             }
+        }
+
+        //Avatar Upload +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        function avatarUpload() {
+ 
+            /************************************************************
+             * Setup
+             *************************************************************/
+            
+            define('TARGET', 'src/Public/images/');    // Target Folder
+            define('MAX_SIZE', 1000000);    // Max Weight Files (octet)
+            define('WIDTH_MAX', 800);    // Max Width Image (pix)
+            define('HEIGHT_MAX', 800);    // Max Height Image (pix)
+            
+            // Data Table
+            $tabExt = array('jpg','gif','png','jpeg');    // Authorized extension
+            $infosImg = array();
+            
+            // Variables
+            $extension = '';
+            $message = '';
+            $nameImage = '';
+            $id = htmlspecialchars($_SESSION['rssManagerId']);
+
+            /************************************************************
+             * New Folder if doesn't exist
+             *************************************************************/
+            if( !is_dir(TARGET) ) {
+                if( !mkdir(TARGET, 0755) ) {
+                    echo '<h3 class="error">Erreur : le répertoire cible ne peut-être créé ! Vérifiez que vous diposiez des droits suffisants pour le faire ou créez le manuellement !</h3>';
+                }
+            }
+            
+            /************************************************************
+             * Upload Script
+             *************************************************************/
+            // Verify Field
+            if(!empty($_POST)){
+                if( !empty($_FILES['file']['name'])){                
+                    $extension  = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);        
+                    
+                    if(in_array(strtolower($extension),$tabExt)){
+                        $infosImg = getimagesize($_FILES['file']['tmp_name']);        
+                        
+                        if($infosImg[2] >= 1 && $infosImg[2] <= 14){
+                            if(($infosImg[0] <= WIDTH_MAX) && ($infosImg[1] <= HEIGHT_MAX) && (filesize($_FILES['file']['tmp_name']) <= MAX_SIZE)){
+                                if(isset($_FILES['file']['error']) && UPLOAD_ERR_OK === $_FILES['file']['error']){
+                                    $nameImage = md5(uniqid()) .'.'. $extension;        
+                                    
+                                    if(move_uploaded_file($_FILES['file']['tmp_name'], TARGET.$nameImage)){
+                                        $message = 'Upload réussi !';
+                                        $accountManager = new \Project\Model\AccountManager();
+                                        $request = $accountManager->postAvatar($nameImage,$id);
+                                    }
+                                    else{
+                                        echo '<h3 class="error">Problème lors de l\'upload !</h3>';
+                                        $userConnectedController = new \Project\Controller\UserConnectedController();
+                                        $userConnectedController->accountManagement();
+                                    }
+                                }
+                                else{
+                                    echo '<h3 class="error">Une erreur interne a empêché l\'uplaod de l\'image</h3>';
+                                    $userConnectedController = new \Project\Controller\UserConnectedController();
+                                    $userConnectedController->accountManagement();
+                                }
+                            }
+                            else{
+                                echo '<h3 class="error">Erreur dans les dimensions de l\'image !</h3>';
+                                $userConnectedController = new \Project\Controller\UserConnectedController();
+                                $userConnectedController->accountManagement();
+                            }
+                        }
+                        else{
+                            echo '<h3 class="error">Le fichier à uploader n\'est pas une image !</h3>';
+                            $userConnectedController = new \Project\Controller\UserConnectedController();
+                            $userConnectedController->accountManagement();
+                        }
+                    }
+                    else{
+                        echo '<h3 class="error">L\'extension du fichier est incorrecte !</h3>';
+                        $userConnectedController = new \Project\Controller\UserConnectedController();
+                        $userConnectedController->accountManagement();
+                    }
+                }
+                else{
+                    echo '<h3 class="error">Veuillez remplir le formulaire svp !</h3>';
+                    $userConnectedController = new \Project\Controller\UserConnectedController();
+                    $userConnectedController->accountManagement();
+                }
+            }
+            
+            
+            
+            header("Refresh:0; index.php");            
         }
     }

@@ -114,6 +114,13 @@
                     $_SESSION['rssManagerStatus'] = htmlspecialchars($result['statusAccount']);
                     $_SESSION['rssManagerAvatar'] = htmlspecialchars($result['avatarAccount']);
 
+                    $inviteManager = new \Project\Model\InviteManager();
+                    $request = $inviteManager->inviteCount($_SESSION['rssManagerId']);
+
+                    $result = $request->fetch();
+
+                    $_SESSION['rssManagerInvite'] = htmlspecialchars($result[0]);
+
                     header("Refresh:0; index.php");
                 }
                 else {

@@ -3,6 +3,6 @@
     namespace Project\Model;
 
     // Class ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    class InvitationManager extends Manager {
+    class CercleLinkManager extends Manager {
         
     }

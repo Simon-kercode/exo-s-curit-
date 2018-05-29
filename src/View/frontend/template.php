@@ -47,6 +47,28 @@
                         <li class="nav-item active">
                             <a class="nav-link" href="index.php">Accueil <span class="sr-only">(current)</span></a>
                         </li>
+                        <?php
+                            if(isset($_SESSION['rssManagerId']) && $_SESSION['rssManagerInvite']>0) {
+                                echo '
+                                    <li class="nav-item active">
+                                        <a class="nav-link" href="index.php?action=rssManagement">Gestion RSS <span class="sr-only">(current)</span></a>
+                                    </li>
+                                    <li class="nav-item active">
+                                        <a class="nav-link" href="index.php?action=inviteManagement"><span class="badge badge-secondary">New</span>Vos Invitations <span class="sr-only">(current)</span></a>
+                                    </li>
+                                '; 
+                            }
+                            elseif(isset($_SESSION['rssManagerId'])) {
+                                echo '
+                                    <li class="nav-item active">
+                                        <a class="nav-link" href="index.php?action=rssManagement">Gestion RSS <span class="sr-only">(current)</span></a>
+                                    </li>
+                                    <li class="nav-item active">
+                                        <a class="nav-link" href="index.php?inviteManagement">Vos Invitations <span class="sr-only">(current)</span></a>
+                                    </li>
+                                ';
+                            }
+                        ?>                        
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <?php
