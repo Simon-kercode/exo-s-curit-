@@ -31,6 +31,22 @@
             require('src/view/frontend/accountManagementView.php');
         }
 
+        //Rss Management +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        function rssManagement() {
+            $idAccount = htmlspecialchars($_SESSION['rssManagerId']);
+
+            $rssManager = new \Project\Model\RssManager();
+            $requestFirst = $rssManager->rssRequest($idAccount);
+
+            $rssCategoryManager = new \Project\Model\RssCategoryManager();
+            $request = $rssCategoryManager->controlRssCategory($idAccount);
+
+            $cercleLinkManager = new \Project\Model\CercleLinkManager();
+            $requestSecond = $cercleLinkManager->cercleLinkRequest($idAccount);
+
+            require('src/view/frontend/rssManagementView.php');
+        }
+
         //Mail Management ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         function mailManagement() {
             $email = htmlspecialchars($_POST['email']);

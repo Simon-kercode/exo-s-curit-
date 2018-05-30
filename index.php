@@ -179,14 +179,18 @@
             elseif($_GET['action'] === 'connection') {
                 $allUserController->connection();
             }
-#UserCo     //Profil Management ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+#UserCo     //Profil Management View +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
             elseif($_GET['action'] === 'accountManagement') {
                 $userConnectedController->accountManagement();
             }
 #UserCo     //Avatar Management ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
             elseif($_GET['action'] === 'uploadAvatar') {
                 $userConnectedController->avatarUpload();
-            }                            
+            }
+#UserCo     //Rss Management View ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+            elseif($_GET['action'] === 'rssManagement') {
+                $userConnectedController->rssManagement();
+            }                                
             //Exception ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
             else {
                 throw new Exception('Variable inattendu');

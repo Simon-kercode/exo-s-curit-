@@ -1,5 +1,5 @@
 var chatArray = [];
-//Ajax Get chat.json ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//Ajax Get chat.json ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++   
 ajaxGet("src/Public/js/chat.json", function (reponse) {
     var articles = JSON.parse(reponse);
     // Retranscription des données ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -10,7 +10,6 @@ ajaxGet("src/Public/js/chat.json", function (reponse) {
     
     Chat.init();
 });
-
 //Integration Chat Object +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 var Chat = {
     init : function(){

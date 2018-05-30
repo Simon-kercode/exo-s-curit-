@@ -8,12 +8,13 @@
         function controlRssCategory($idAccount) {
             // Data Base Connection
             $db=$this->dbConnect();
-            // Comment supress 
+            // Rss Category Request 
             $request = $db->prepare('SELECT * FROM rsscategories WHERE idAccount = ?');
             $request -> execute(array($idAccount));
 
             return $request;
         }
+        
         //Supress Rss Category ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         function supressRssCategory($idAccount) {
             // Data Base Connection
