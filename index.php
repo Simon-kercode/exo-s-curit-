@@ -157,17 +157,64 @@
                     throw new Exception('Variable inattendu');
                 }
             }
+#UserCo     //RSS Insert +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+            elseif($_GET['action'] === 'rssInsert' && $_GET['db'] === 'ok') {
+                if(isset($_POST['urlRss']) && isset($_POST['nameRss']) && isset($_POST['categorySelect'])) {
+                    if($_POST['urlRss'] != '' && $_POST['nameRss'] != '' && $_POST['categorySelect'] != 'Choisir la catégorie') {
+                        $userConnectedController->rssInsert();
+                    }
+                    //Exception ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                    else {
+                        throw new Exception('Champs manquants');
+                    }
+                }
+                //Exception ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                else {
+                    throw new Exception('Variable inattendu');
+                }
+            }
+#UserCo     //Category Insert ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+            elseif($_GET['action'] === 'categoryRss' && $_GET['db'] === 'ok') {
+                if(isset($_POST['nameRssCategory'])) {
+                    if($_POST['nameRssCategory'] != '') {
+                        $userConnectedController->categoryInsert();
+                    }
+                    //Exception ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                    else {
+                        throw new Exception('Champs manquants');
+                    }
+                }
+                //Exception ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                else {
+                    throw new Exception('Variable inattendu');
+                }
+            }
             //Exception ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
             else {
                 throw new Exception('Variable inattendu');
             }            
         }
-        //Action GET ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        //Action GET +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         elseif(isset($_GET['action']) && isset($_GET['session'])) {
 #UserCo     //Deconnection Session       
             if($_GET['action'] === 'deconnection' && $_GET['session'] === 'ok') {
                 $userConnectedController->deconnectionSession();
             }
+            //Exception ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+            else {
+                throw new Exception('Variable inattendu');
+            } 
+        }
+        //Action GET +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        elseif(isset($_GET['action']) && isset($_GET['idCategoryRss'])) {
+#UserCo     //Category View ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+            if($_GET['action'] === 'categoryRssView' && $_GET['idCategoryRss'] != '') {
+                $userConnectedController->categoryRssView();
+            }
+            //Exception ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+            else {
+                throw new Exception('Variable inattendu');
+            } 
         }
         //Action GET ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         elseif(isset($_GET['action'])) {

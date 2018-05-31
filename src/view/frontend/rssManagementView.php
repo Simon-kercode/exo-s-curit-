@@ -21,8 +21,8 @@
         Cercles de Veille
     </a>
 </p>
-
-<div class="collapse" id="allRss">
+<!-- Section "Tous les RSS" +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<div class="collapse" id="allRss"> 
     <div class="card card-body">
         <h5>Tout les RSS</h5>
         <!-- Button trigger modal -->
@@ -42,7 +42,7 @@
                     </div>
                     <div class="modal-body">
                         <!-- Inscription Forms ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-                        <form action="index.php?action=rss&db=ok" id="inscriptionForm" method="post">
+                        <form action="index.php?action=rssInsert&db=ok" id="inscriptionForm" method="post">
                             <div class="form-group">
                                 <label for="urlRss">URL du Flux RSS*</label>
                                 <input type="text" class="form-control" name="urlRss" id="urlRss" placeholder="RSS URL">
@@ -50,6 +50,18 @@
                             <div class="form-group">
                                 <label for="nameRss">Nom du Flux RSS*</label>
                                 <input type="text" class="form-control" name="nameRss" id="nameRss" placeholder="RSS Nom">
+                            </div>
+                            <div class="form-group">
+                                <label for="categorySelect">Catégories</label>
+                                <select class="form-control" name ="categorySelect" id="categorySelect">
+                                    <option>Choisir la catégorie</option>
+                                    <?php
+                                        while ($db5 = $requestFourth->fetch()) {
+                                            echo '<option>'.htmlspecialchars($db5['nameRssCategory']).'</option>';
+                                        }
+                                    ?>
+                                </select>
+                                <small id="categorySelect" class="form-text text-muted">Attention! Si vou n'avez pas encore créer de Catégorie vous devez le faire avant d'ajouter un Flux RSS</small>
                             </div>
                             <button type="submit" class="btn btn-info btn-validation col-12">Envoyer</button>
                         </form>
@@ -107,6 +119,7 @@
         ?>
     </div>
 </div>
+<!-- Section "RSS par Catégorie" ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 <div class="collapse" id="categoryRss">
     <div class="card card-body">
         <h5>RSS par Catégories</h5>
@@ -145,12 +158,13 @@
             while ($db2 = $request->fetch()) {
                 echo '
                     <hr>
-                    <a type="button" class="btn btn-info col-12" href="index.php?action=categoryRss&idCategoryRss='.htmlspecialchars($db2['idRssCategory']).'">'.htmlspecialchars($db2['nameRssCategory']).'</a>                    
+                    <a type="button" class="btn btn-info col-12" href="index.php?action=categoryRssView&idCategoryRss='.htmlspecialchars($db2['idRssCategory']).'">'.htmlspecialchars($db2['nameRssCategory']).'</a>                    
                 ';
             }
         ?>
     </div>
 </div>
+<!-- Section "Cercle de Veille" ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 <div class="collapse" id="cercleLink">
     <div class="card card-body">
     <h5>Cercle de Veille</h5>
@@ -197,12 +211,38 @@
 </div>
 
 <!-- Card Columns +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-<div class="card-columns">
-    <div class="card">
-        <img class="card-img-top" src=".../100px160/" alt="Card image cap">
-        <div class="card-body">
-        <h5 class="card-title">Card title that wraps to a new line</h5>
-        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+<div class="card chatBox content">
+    <div class="card-body scroll">    
+        <div class="card-columns">
+            <?php
+                while ($db4 = $requestThird->fetch()) {    
+                    $rss = simplexml_load_file($db4['urlRss']);
+                    foreach ($rss->channel->item as $item) {
+                        $datetime = date_create($item->pubDate);
+                        $date = date_format($datetime, 'd M Y, H\hi');
+                        echo '    
+                            <div class="card">
+                                <div class="card-header">'
+                                    .htmlspecialchars($db4['nameRssCategory']).' : '.htmlspecialchars($db4['nameRss']).
+                                '</div>
+                                <div class="card-body">
+                                    <h4 class="card-title">';
+                                        if($item->category) {
+                                            echo $item->category.' : ';
+                                        }
+                                        echo '<a href="'.$item->link.'">'.$item->title.'</a>
+                                    </h4>
+                                    <p class="card-text">'.$item->description.'</p>
+                                </div>
+                                <div class="card-footer text-muted">
+                                    '.$date.'
+                                </div>
+                            </div>
+                        ';
+                    }
+                    
+                }
+            ?>
         </div>
     </div>
 </div>

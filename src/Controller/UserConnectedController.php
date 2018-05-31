@@ -44,6 +44,12 @@
             $cercleLinkManager = new \Project\Model\CercleLinkManager();
             $requestSecond = $cercleLinkManager->cercleLinkRequest($idAccount);
 
+            $rssManager = new \Project\Model\RssManager();
+            $requestThird = $rssManager->cardRssRequest($idAccount);
+
+            $rssCategoryManager = new \Project\Model\RssCategoryManager();
+            $requestFourth = $rssCategoryManager->rssCategoryNameRequest($idAccount);
+
             require('src/view/frontend/rssManagementView.php');
         }
 
@@ -154,6 +160,17 @@
             }
         }
 
+        //Category RSS View +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        function categoryRssView() {
+            $idAccount = htmlspecialchars($_SESSION['rssManagerId']);
+            $idCategory = htmlspecialchars($_GET['idCategoryRss']);
+
+            $rssManager = new \Project\Model\RssManager();
+            $request = $rssManager->rssByCategoryRequest($idAccount,$idCategory);
+
+            require('src/view/frontend/rssCategoryView.php');
+        }
+
         //Avatar Upload +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         function avatarUpload() {
  
@@ -241,10 +258,53 @@
                     $userConnectedController = new \Project\Controller\UserConnectedController();
                     $userConnectedController->accountManagement();
                 }
-            }
-            
-            
+            }     
             
             header("Refresh:0; index.php");            
         }
-    }
+
+        //RSS Insert +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        function rssInsert() {
+            $idAccount = htmlspecialchars($_SESSION['rssManagerId']);
+            $urlRss = htmlspecialchars($_POST['urlRss']);
+            $nameRss = htmlspecialchars($_POST['nameRss']);
+            $categorySelect = htmlspecialchars($_POST['categorySelect']);
+
+            $rssManager = new \Project\Model\RssManager();
+            $rssManager->rssInsertDb($urlRss,$nameRss);
+
+            $rssManager = new \Project\Model\RssManager();
+            $request = $rssManager->rssControl($urlRss,$nameRss);
+
+            $rssCategoryManager = new \Project\Model\RssCategoryManager();
+            $requestFirst = $rssCategoryManager->rssCategoryRequest($idAccount,$categorySelect);
+
+            $result = $request->fetch();
+            $result2 = $requestFirst->fetch();
+
+            if(isset($result['idRss']) && isset($result2['idRssCategory'])) {
+                $idRss = htmlspecialchars($result['idRss']);
+                $idRssCategory = htmlspecialchars($result2['idRssCategory']);
+
+                $deffineManager = new \Project\Model\DeffineManager();
+                $deffineManager->deffineInsert($idRssCategory,$idRss);
+            }
+            else {
+                echo '<h3 class="error">Un probléme est survenu lors de l\'inscription du Flux RSS... Veuillez réessayer plus tard!</h3>';
+            }
+            $userConnectedController = new \Project\Controller\UserConnectedController();
+            $userConnectedController->rssManagement();
+        }
+
+        //Category Insert +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        function categoryInsert() {
+            $idAccount = htmlspecialchars($_SESSION['rssManagerId']);
+            $nameRssCategory = htmlspecialchars($_POST['nameRssCategory']);
+
+            $rssCategoryManager = new \Project\Model\RssCategoryManager();
+            $rssCategoryManager->rssCategoryInsert($nameRssCategory,$idAccount);
+
+            $userConnectedController = new \Project\Controller\UserConnectedController();
+            $userConnectedController->rssManagement();
+        }
+    } 
