@@ -54,7 +54,7 @@
             <div class="card card-body">
                 <form action="index.php?action=passwordManagement&db=ok" id="inscriptionForm" method="post">
                     <div class="form-group">
-                        <label for="oldPassword">Ancient Mot de passe</label>
+                        <label for="oldPassword">Ancien Mot de passe</label>
                         <input type="password" class="form-control" name="oldPassword" id="oldPassword" placeholder="Votre Ancient Mot de Passe">
                     </div>
                     <div class="form-group">

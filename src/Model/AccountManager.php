@@ -116,5 +116,16 @@
             // Account update 
             $request = $db->prepare('UPDATE accounts SET avatarAccount=? WHERE idAccount=?');
             $request -> execute(array($nameImage,$id));
-        }        
+        }
+        
+        //Invite Request +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        function inviteRequest($idAccount) {
+            // Data Base Connection
+            $db=$this->dbConnect();
+            // Invite Request
+            $request = $db->prepare('SELECT * FROM accounts INNER JOIN invite ON accounts.idAccount = invite.idAccount INNER JOIN invitation ON invite.idInvitation = invitation.idInvitation INNER JOIN cerclelink on invitation.idCercleLink = cerclelink.idCercleLink WHERE accounts.idAccount = ?');
+            $request -> execute(array($idAccount));
+
+            return $request;
+        }
     }

@@ -12,4 +12,13 @@
             $request = $db->prepare('DELETE FROM connect WHERE idAccount = ?');
             $request -> execute(array($idAccount));
         }
+
+        //Connect Insert ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        function connectInsert($idAccount,$idCircleLink) {
+            // Data Base Connection
+            $db=$this->dbConnect();
+            // Cercle Link Insert 
+            $request = $db->prepare('INSERT INTO connect (idAccount,idCercleLink) VALUES (?,?)');
+            $request -> execute(array($idAccount,$idCircleLink));
+        }
     }

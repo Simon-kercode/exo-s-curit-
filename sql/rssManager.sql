@@ -61,8 +61,8 @@ CREATE TABLE comments(
         idComment      int (11) Auto_increment  NOT NULL ,
         contentComment Varchar (1000) NOT NULL ,
         dateComment    Date NOT NULL ,
-        idRss          Int NOT NULL ,
         idAccount      Int NOT NULL ,
+        idCercleLink   Int NOT NULL ,
         PRIMARY KEY (idComment )
 )ENGINE=InnoDB;
 
@@ -88,6 +88,7 @@ CREATE TABLE invitation(
         idInvitation      int (11) Auto_increment  NOT NULL ,
         contentInvitation Varchar (275) NOT NULL ,
         dateInvitation    Date NOT NULL ,
+        idCercleLink      Int NOT NULL ,
         PRIMARY KEY (idInvitation )
 )ENGINE=InnoDB;
 
@@ -125,9 +126,10 @@ CREATE TABLE invite(
 )ENGINE=InnoDB;
 
 ALTER TABLE rssCategories ADD CONSTRAINT FK_rssCategories_idAccount FOREIGN KEY (idAccount) REFERENCES accounts(idAccount);
-ALTER TABLE comments ADD CONSTRAINT FK_comments_idRss FOREIGN KEY (idRss) REFERENCES rss(idRss);
 ALTER TABLE comments ADD CONSTRAINT FK_comments_idAccount FOREIGN KEY (idAccount) REFERENCES accounts(idAccount);
+ALTER TABLE comments ADD CONSTRAINT FK_comments_idCercleLink FOREIGN KEY (idCercleLink) REFERENCES cercleLink(idCercleLink);
 ALTER TABLE chats ADD CONSTRAINT FK_chats_idAccount FOREIGN KEY (idAccount) REFERENCES accounts(idAccount);
+ALTER TABLE invitation ADD CONSTRAINT FK_invitation_idCercleLink FOREIGN KEY (idCercleLink) REFERENCES cercleLink(idCercleLink);
 ALTER TABLE connect ADD CONSTRAINT FK_connect_idAccount FOREIGN KEY (idAccount) REFERENCES accounts(idAccount);
 ALTER TABLE connect ADD CONSTRAINT FK_connect_idCercleLink FOREIGN KEY (idCercleLink) REFERENCES cercleLink(idCercleLink);
 ALTER TABLE deffine ADD CONSTRAINT FK_deffine_idRssCategory FOREIGN KEY (idRssCategory) REFERENCES rssCategories(idRssCategory);

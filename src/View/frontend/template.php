@@ -99,7 +99,7 @@
                         if(isset($_SESSION['rssManagerId'])) {
                             echo 
                                 '<a class="navbar-brand" href="index.php?action=accountManagement">
-                                    <img width="30" height="30" alt="" src="src/public/images/'. $_SESSION['rssManagerAvatar'] . '" alt="Avatar" />
+                                    <img width="30" height="30" alt="" src="src/Public/images/'. $_SESSION['rssManagerAvatar'] . '" alt="Avatar" />
                                     Bienvenue '.htmlspecialchars($_SESSION['rssManagerPseudo'])
                                 .'</a>';
                         }

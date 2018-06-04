@@ -84,6 +84,18 @@ label,small{
     padding-left: 10px;
 }
 
+/* Invitation Card +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+.invit{
+    margin-right: 20px;
+}
+
+.invitCard{
+    margin-left: 12px;
+    font-size: 1.25em;
+    color:#8509be;
+    font-family: 'Skranji', cursive;
+}
+
 /* Footer ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 footer .card-body{
     background: linear-gradient(120deg, #00e1ff, #b4ff0d);

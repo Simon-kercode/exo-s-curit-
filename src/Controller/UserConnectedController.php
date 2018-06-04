@@ -171,6 +171,34 @@
             require('src/view/frontend/rssCategoryView.php');
         }
 
+        //Cercle Link View ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        function cercleLinkView() {
+            $idCircleLink = htmlspecialchars($_GET['idCircleLink']);
+
+            $cercleLinkManager = new \Project\Model\CercleLinkManager();
+            $requestSecond = $cercleLinkManager->cercleNameRequest($idCircleLink);
+
+            $result = $requestSecond->fetch();
+
+            $cercleLinkManager = new \Project\Model\CercleLinkManager();
+            $request = $cercleLinkManager->cercleRequest($idCircleLink);
+
+            $commentManager = new \Project\Model\CommentManager();
+            $requestFirst = $commentManager->commentRequest($idCircleLink);
+
+            require('src/view/frontend/cercleLinkView.php');
+        }
+
+        //Invitation View +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        function invitationView() {
+            $idAccount = htmlspecialchars($_SESSION['rssManagerId']);
+            
+            $accountManager = new \Project\Model\AccountManager();
+            $request = $accountManager->inviteRequest($idAccount);
+
+            require('src/view/frontend/invitationView.php');
+        }
+
         //Avatar Upload +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         function avatarUpload() {
  
@@ -306,5 +334,44 @@
 
             $userConnectedController = new \Project\Controller\UserConnectedController();
             $userConnectedController->rssManagement();
+        }
+
+        //Cercle Link Insert ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        function cercleLinkInsert() {
+            $idAccount = htmlspecialchars($_SESSION['rssManagerId']);
+            $nameCercleLink = htmlspecialchars($_POST['nameCercleLink']);
+
+            $cercleLinkManager = new \Project\Model\CercleLinkManager();
+            $cercleLinkManager->cercleInsert($nameCercleLink);
+            $request = $cercleLinkManager->cercleControl($nameCercleLink);
+
+            $result = $request->fetch();
+            if(isset($result['idCercleLink'])) {
+                $idCircleLink = htmlspecialchars($result['idCercleLink']);
+
+                $connectManager = new \Project\Model\ConnectManager();
+                $connectManager->connectInsert($idAccount,$idCircleLink);
+
+                $userConnectedController = new \Project\Controller\UserConnectedController();
+                $userConnectedController->rssManagement();                
+            }
+            else {
+                echo '<h3 class="error">Un probléme est survenu lors de l\'inscription du Cercle... Veuillez réessayer plus tard!</h3>';
+            }
+            $userConnectedController = new \Project\Controller\UserConnectedController();
+            $userConnectedController->rssManagement();
+        }
+
+        //Comment Cercle Link Insert ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        function commentCercle() {
+            $idAccount = htmlspecialchars($_SESSION['rssManagerId']);
+            $idCercleLink = htmlspecialchars($_GET['idCircleLink']);
+            $contentComment = htmlspecialchars($_POST['commentContent']);
+
+            $commentManager = new \Project\Model\CommentManager();
+            $commentManager->commentInsert($contentComment,$idAccount,$idCercleLink);
+
+            $userConnectedController = new \Project\Controller\UserConnectedController();
+            $userConnectedController->cercleLinkView();
         }
     } 
