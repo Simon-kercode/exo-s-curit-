@@ -123,9 +123,20 @@
             // Data Base Connection
             $db=$this->dbConnect();
             // Invite Request
-            $request = $db->prepare('SELECT * FROM accounts INNER JOIN invite ON accounts.idAccount = invite.idAccount INNER JOIN invitation ON invite.idInvitation = invitation.idInvitation INNER JOIN cerclelink on invitation.idCercleLink = cerclelink.idCercleLink WHERE accounts.idAccount = ?');
+            $request = $db->prepare('SELECT * FROM accounts INNER JOIN invite ON accounts.idAccount = invite.idAccount INNER JOIN invitation ON invite.idInvitation = invitation.idInvitation INNER JOIN cerclelink on invitation.idCercleLink = cerclelink.idCercleLink WHERE accounts.idAccount = ? ORDER BY invitation.idInvitation DESC');
             $request -> execute(array($idAccount));
 
             return $request;
+        }
+
+        //Invite Request second +++++++++++++++++++++++++++++++++++++++++++++++++++++
+        function inviteRequestSecond($idAccount) {
+            // Data Base Connection
+            $db=$this->dbConnect();
+            // Invite Request
+            $requestSecond = $db->prepare('SELECT * FROM accounts INNER JOIN connect ON accounts.idAccount = connect.idAccount INNER JOIN cerclelink ON connect.idCercleLink = cerclelink.idCercleLink WHERE accounts.idAccount = ?');
+            $requestSecond -> execute(array($idAccount));
+
+            return $requestSecond;
         }
     }

@@ -90,6 +90,10 @@ label,small{
 }
 
 .invitCard{
+    margin-bottom: 20px;
+}
+
+.invitCardText{
     margin-left: 12px;
     font-size: 1.25em;
     color:#8509be;

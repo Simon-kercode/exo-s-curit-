@@ -11,9 +11,15 @@
 
         $allUserController = new \Project\Controller\AllUserController();
         $userConnectedController = new \Project\Controller\UserConnectedController();
-
+        //Action GET and ID GET +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        if(isset($_GET['action']) && isset($_GET['idCircleLink']) && isset($_GET['idInvitation'])) {
+#UserCo     //Invitation Accept ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+            if($_GET['action'] === 'invitationAccept' && $_GET['idCircleLink'] != '' && $_GET['idInvitation'] != '') {
+                $userConnectedController->invitationAccept();
+            }
+        }
         //Action GET and DB GET +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-        if(isset($_GET['action']) && isset($_GET['db'])) {
+        elseif(isset($_GET['action']) && isset($_GET['db'])) {
 #AllUser    //Inscription Data Base +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
             if($_GET['action'] === 'inscription' && $_GET['db'] === 'ok') {    
                 if(isset($_POST['pseudo']) && isset($_POST['email']) && isset($_POST['password']) && isset($_POST['passwordComp'])) {
@@ -205,6 +211,22 @@
                     throw new Exception('Variable inattendu');
                 }
             }
+#UserCo     //Invitation Send ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+            elseif($_GET['action'] === 'invitation' && $_GET['db'] === 'ok') {
+                if(isset($_POST['pseudo']) && isset($_POST['cercleLinked']) && isset($_POST['invitContent'])) {
+                    if($_POST['pseudo'] != '' && $_POST['cercleLinked'] != '' && $_POST['invitContent']) {
+                        $userConnectedController->invitationCercleLink();
+                    }
+                    //Exception ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                    else {
+                        throw new Exception('Champs manquants');
+                    }
+                }
+                //Exception ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                else {
+                    throw new Exception('Variable inattendu');
+                }
+            }           
             //Exception ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
             else {
                 throw new Exception('Variable inattendu');
@@ -253,7 +275,17 @@
                 else {
                     throw new Exception('Variable inattendu');
                 }
-
+            }
+            //Exception ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+            else {
+                throw new Exception('Variable inattendu');
+            } 
+        }
+        //Action GET +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        elseif(isset($_GET['action']) && isset($_GET['idInvitation'])) {
+#UserCo     //Invitation Supress +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++       
+            if($_GET['action'] === 'invitationRefuse' && $_GET['idInvitation'] != '') {
+                $userConnectedController->inviteSupress();
             }
             //Exception ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
             else {

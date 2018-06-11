@@ -196,6 +196,9 @@
             $accountManager = new \Project\Model\AccountManager();
             $request = $accountManager->inviteRequest($idAccount);
 
+            $accountManager = new \Project\Model\AccountManager();
+            $requestSecond = $accountManager->inviteRequestSecond($idAccount);
+
             require('src/view/frontend/invitationView.php');
         }
 
@@ -373,5 +376,105 @@
 
             $userConnectedController = new \Project\Controller\UserConnectedController();
             $userConnectedController->cercleLinkView();
+        }
+
+        //Invitation Cercle Link ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        function invitationCercleLink() {
+            $nameCercleLink = htmlspecialchars($_POST['cercleLinked']);
+            $pseudo = htmlspecialchars($_POST['pseudo']);
+            $cercleLinked = htmlspecialchars($_POST['cercleLinked']);
+            $invitContent = htmlspecialchars($_POST['invitContent']);
+
+            $cercleLinkManager= new \Project\Model\CercleLinkManager();
+            $request = $cercleLinkManager->cercleControl($nameCercleLink);
+
+            $result = $request->fetch();
+            if(isset($result['idCercleLink'])) {
+                $idCercleLink = htmlspecialchars($result['idCercleLink']);
+
+                $invitationManager = new \Project\Model\InvitationManager();
+                $invitationManager->invitationInsert($invitContent,$idCercleLink);
+
+                $invitationManager = new \Project\Model\InvitationManager();
+                $request = $invitationManager->invitationControl($idCercleLink,$invitContent);
+
+                $result = $request->fetch();
+                if(isset($result['idInvitation'])) {
+                    $idInvitation = htmlspecialchars($result['idInvitation']);
+
+                    $accountManager = new \Project\Model\AccountManager();
+                    $request = $accountManager->connectionDbSession($pseudo);
+
+                    $result = $request->fetch();
+                    if(isset($result['idAccount'])) {
+                        $idAccount = htmlspecialchars($result['idAccount']);
+
+                        $inviteManager = new \Project\Model\InviteManager();
+                        $inviteManager->inviteInsert($idAccount,$idInvitation);
+
+                        echo '<h3 class="validate">Invitation envoyé avec succès... !</h3>';
+                    } 
+                    else {
+                        $invitationManager = new \Project\Model\InvitationManager();
+                        $invitationManager->invitationSupress($idInvitation);
+
+                        echo '<h3 class="error">Le pseudo demandé n\'existe pas... !</h3>';
+                    }                   
+                }
+                else {
+                    echo '<h3 class="error">Un probléme est survenu lors de l\'invitation au Cercle... Veuillez réessayer plus tard!</h3>';
+                }
+            }
+            else {
+                echo '<h3 class="error">Un probléme est survenu lors de l\'invitation au Cercle... Veuillez réessayer plus tard!</h3>';
+            }
+            
+            $userConnectedController = new \Project\Controller\UserConnectedController();
+            $userConnectedController->invitationView();
+        }
+
+        //Invitation Supress +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        function inviteSupress() {
+            $idAccount = htmlspecialchars($_SESSION['rssManagerId']);
+            $idInvitation = htmlspecialchars($_GET['idInvitation']);
+
+            $inviteManager = new \Project\Model\InviteManager();
+            $inviteManager->inviteSupress($idAccount,$idInvitation);
+
+            $invitationManager = new \Project\Model\InvitationManager();
+            $invitationManager->invitationSupress($idInvitation);
+
+
+
+            echo '<h3 class="validate">Invitation supprimé avec succès... !</h3>';
+            $userConnectedController = new \Project\Controller\UserConnectedController();
+            $userConnectedController->invitationView();
+        }
+
+        //Invitation Accept +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        function invitationAccept() {
+            $idAccount = htmlspecialchars($_SESSION['rssManagerId']);
+            $idCircleLink = htmlspecialchars($_GET['idCircleLink']);
+            $idInvitation = htmlspecialchars($_GET['idInvitation']);
+
+            $connectManager = new \Project\Model\ConnectManager();
+            $connectManager->connectInsert($idAccount,$idCircleLink);
+
+            $inviteManager = new \Project\Model\InviteManager();
+            $inviteManager->inviteSupress($idAccount,$idInvitation);
+
+            $invitationManager = new \Project\Model\InvitationManager();
+            $invitationManager->invitationSupress($idInvitation);
+
+            $inviteManager = new \Project\Model\InviteManager();
+            $request = $inviteManager->inviteCount($_SESSION['rssManagerId']);
+
+            $result = $request->fetch();
+
+            $_SESSION['rssManagerInvite'] = htmlspecialchars($result[0]);
+
+            echo '<h3 class="validate">Cercle Rejoint avec succès... !</h3>';
+            $userConnectedController = new \Project\Controller\UserConnectedController();
+            $userConnectedController->invitationView();
         }
     } 

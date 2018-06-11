@@ -23,4 +23,22 @@
 
             return $request;
         }
+
+        //Invite Insert ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        function inviteInsert($idAccount,$idInvitation) {
+            // Data Base Connection
+            $db=$this->dbConnect();
+            // Invite Insert 
+            $request = $db->prepare('INSERT INTO invite (idAccount,idInvitation) VALUES (?,?)');
+            $request -> execute(array($idAccount,$idInvitation));
+        }
+
+        //Invite Supress ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        function inviteSupress($idAccount,$idInvitation) {
+            // Data Base Connection
+            $db=$this->dbConnect();
+            // Invite supress 
+            $request = $db->prepare('DELETE FROM invite WHERE idAccount = ? AND idInvitation= ?');
+            $request -> execute(array($idAccount,$idInvitation));
+        }
     }

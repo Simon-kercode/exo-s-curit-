@@ -24,17 +24,19 @@
                 <input type="text" class="form-control" name="pseudo" id="pseudo" placeholder="Pseudo">
             </div>
             <div class="form-group">
-                <label for="cercleLinked">Example select</label>
-                <select class="form-control" name="pseudo" id="cercleLinked">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
+                <label for="cercleLinked">Cercle à Sélectionner</label>
+                <select class="form-control" name="cercleLinked" id="cercleLinked">
+                    <?php
+                        while ($db2 = $requestSecond->fetch()) {
+                            echo'
+                                <option>'.htmlspecialchars($db2['nameCircle']).'</option>
+                            ';
+                        }
+                    ?>
                 </select>
             </div>   
             <div class="form-group">
-                <label for="inviteContent">Example textarea</label>
+                <label for="inviteContent">Message d'Invitation</label>
                 <textarea class="form-control" name="invitContent" id="invitContent" rows="3"></textarea>
             </div> 
             <button type="submit" class="btn btn-info btn-validation col-12">Envoyer</button>
@@ -48,14 +50,14 @@
         <?php
             while ($db1 = $request->fetch()) {
                 echo '
-                    <div class="card border-primary">
+                    <div class="card border-primary invitCard">
                         <div class="card-body">
-                            <h4 class="card-title"><span class="invitCard">'.htmlspecialchars($db1['pseudoAccount']).'</span> vous invite à rejoindre le Cercle : <span class="invitCard">'.htmlspecialchars($db1['nameCircle']).'</span> </h4>
+                            <h4 class="card-title"><span class="invitCardText">'.htmlspecialchars($db1['pseudoAccount']).'</span> vous invite à rejoindre le Cercle : <span class="invitCardText">'.htmlspecialchars($db1['nameCircle']).'</span> </h4>
                             <p class="card-text">'.htmlspecialchars($db1['contentInvitation']).'
                                 <hr>
                                 '.htmlspecialchars($db1['dateInvitation']).'
-                                <a href="#" class="btn btn-danger float-right invit">Refuser</a>
-                                <a href="#" class="btn btn-success float-right invit">Accepter</a>
+                                <a href="index.php?action=invitationRefuse&idInvitation='.htmlspecialchars($db1['idInvitation']).'" class="btn btn-danger float-right invit">Refuser</a>
+                                <a href="index.php?action=invitationAccept&idCircleLink='.htmlspecialchars($db1['idCercleLink']).'&idInvitation='.htmlspecialchars($db1['idInvitation']).'" class="btn btn-success float-right invit">Accepter</a>
                             </p>                
                         </div>
                     </div>
