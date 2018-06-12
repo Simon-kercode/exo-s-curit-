@@ -54,4 +54,24 @@
             $request = $db->prepare('INSERT INTO rsscategories (nameRssCategory, idAccount) VALUES (?, ?)');
             $request -> execute(array($nameRssCategory,$idAccount));
         }
+
+        //RSS Category Control +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        function categoryRssControl($idCategory) {
+            // Data Base Connection
+            $db=$this->dbConnect();
+            // Rss Category Request 
+            $request = $db->prepare('SELECT * FROM rsscategories INNER JOIN deffine ON rsscategories.idRssCategory=deffine.idRssCategory INNER JOIN rss ON deffine.idRss=rss.idRss WHERE rsscategories.idRssCategory = ?');
+            $request-> execute(array($idCategory));
+
+            return $request;
+        }
+
+        //RSS Category Supress +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        function categoryRssSupress($idCategory) {
+            // Data Base Connection
+            $db=$this->dbConnect();
+            // Rss Category supress 
+            $request = $db->prepare('DELETE FROM rsscategories WHERE idRssCategory = ?');
+            $request -> execute(array($idCategory));
+        }
     }

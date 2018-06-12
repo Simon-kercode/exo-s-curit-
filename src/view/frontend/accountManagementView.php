@@ -31,6 +31,13 @@
 
             <?= 'E-Mail: ' . htmlspecialchars($result['emailAccount']) ?>
         </h5>
+        <?php
+            if(isset($_SESSION['rssManagerStatus'])) {
+                if($_SESSION['rssManagerStatus'] === 'Admin' || $_SESSION['rssManagerStatus'] === 'SU') {
+                    echo '<a href="index.php?action=admin" type="button" class="btn btn-warning">Panel Admin</a>';
+                }
+            }
+        ?>
         <a class="btn btn-primary" data-toggle="collapse" href="#mailManagement" role="button" aria-expanded="false" aria-controls="collapseExample">
             Changer l'adresse mail
         </a>

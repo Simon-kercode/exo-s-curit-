@@ -108,7 +108,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Poster dans un Cercle</button>
+                                    <a href="index.php?action=supressRss&idRss='.htmlspecialchars($db1['idRss']).'" type="button" class="btn btn-danger">Suprimer le RSS</a>
                                 </div>
                             </div>
                         </div>

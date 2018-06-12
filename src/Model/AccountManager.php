@@ -139,4 +139,13 @@
 
             return $requestSecond;
         }
+
+        //Warning Comment Increment ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        function warningAccount($pseudoAccount) {
+            // Data Base Connection
+            $db=$this->dbConnect();
+            // Comments Update
+            $request = $db->prepare('UPDATE accounts SET warningAccount=warningAccount + 1 WHERE pseudoAccount = ?');
+            $request -> execute(array($pseudoAccount));
+        }
     }

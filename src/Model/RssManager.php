@@ -56,4 +56,13 @@
 
             return $request;
         }
+
+        //Rss Supress ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++        
+        function supressRss($idRss) {
+            // Data Base Connection
+            $db=$this->dbConnect();
+            // Rss supress 
+            $request = $db->prepare('DELETE FROM rss WHERE idRss = ?');
+            $request -> execute(array($idRss));
+        }
     }

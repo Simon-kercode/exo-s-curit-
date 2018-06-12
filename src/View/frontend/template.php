@@ -27,6 +27,8 @@
         <link href="https://fonts.googleapis.com/css?family=Skranji" rel="stylesheet"> 
         <!-- Stylesheet +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
         <link href="src/Public/css/style.css" rel="stylesheet" /> 
+        <!-- Fav Icon +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+        <link rel="icon" type="image/png" href="src/Public/images/logo.png" />
 
     </head>
 
@@ -64,7 +66,7 @@
                                         <a class="nav-link" href="index.php?action=rssManagement">Gestion RSS <span class="sr-only">(current)</span></a>
                                     </li>
                                     <li class="nav-item active">
-                                        <a class="nav-link" href="index.php?inviteManagement">Vos Invitations <span class="sr-only">(current)</span></a>
+                                        <a class="nav-link" href="index.php?action=inviteManagement">Vos Invitations <span class="sr-only">(current)</span></a>
                                     </li>
                                 ';
                             }
@@ -122,6 +124,45 @@
                         <li class="nav-item">
                             <a class="nav-link disabled" href="#up">&uarr; Up</a>
                         </li>
+                        <?php
+                            if(isset($_SESSION['rssManagerId'])) {
+                                echo '
+                                    <li>
+                                        <!-- Button trigger modal -->
+                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#warning">
+                                            Signaler un Compte
+                                        </button>
+                                        
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="warning" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Signaler un compte</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form action="index.php?action=warning&db=ok" id="chatForm" method="post">
+                                                            <div class="form-group">
+                                                                <label for="pseudoWarning">Pseudo à Signaler</label>
+                                                                <input type="text" class="form-control" name="pseudoWarning" id="pseudoWarning" placeholder="Pseudo">
+                                                                <small id="pseudoWarning" class="form-text text-muted">Attention, tout abus de cette fonction peut être sanctionné</small>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                                                <button type="submit" class="btn btn-danger">Enoyer le signalement</button>
+                                                            </div>  
+                                                        </form>
+                                                    </div>                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                ';
+                            }
+                        ?>
                     </ul>
                 </div>
                 <div class="card-body">

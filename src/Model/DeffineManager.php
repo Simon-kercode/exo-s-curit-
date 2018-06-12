@@ -21,4 +21,13 @@
             $request = $db->prepare('INSERT INTO deffine (idRssCategory, idRss) VALUES (?, ?)');
             $request -> execute(array($idRssCategory,$idRss));      
         }
+
+        //Supress Cercle Link ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        function deffineSupress($idRss) {
+            // Data Base Connection
+            $db=$this->dbConnect();
+            // Deffine supress 
+            $request = $db->prepare('DELETE FROM deffine WHERE idRss = ?');
+            $request -> execute(array($idRss));
+        }
     }

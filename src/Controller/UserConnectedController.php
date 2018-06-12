@@ -477,4 +477,78 @@
             $userConnectedController = new \Project\Controller\UserConnectedController();
             $userConnectedController->invitationView();
         }
+
+        //Pseudo Warning ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        function pseudoWarning() {
+            $pseudoAccount = htmlspecialchars($_POST['pseudoWarning']);
+            
+            $accountManager = new \Project\Model\AccountManager();
+            $accountManager->warningAccount($pseudoAccount);
+
+            echo '<h3 class="validate">Signalement envoyé avec succès... !</h3>';
+            $allUserController = new \Project\Controller\AllUserController();
+            $allUserController->index();
+        }
+
+        //Rss Supress ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        function rssSupress() {
+            $idRss = htmlspecialchars($_GET['idRss']);
+
+            $deffineManager = new \Project\Model\DeffineManager();
+            $deffineManager->deffineSupress($idRss);
+
+            $rssManager = new \Project\Model\RssManager();
+            $rssManager->supressRss($idRss);
+
+            echo '<h3 class="validate">Rss suprimé avec succès... !</h3>';
+            $userConnectedController = new \Project\Controller\UserConnectedController();
+            $userConnectedController->rssManagement();
+        }
+
+        //Category Rss Supress +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        function categoryRssSupress() {
+            $idCategory = htmlspecialchars($_GET['idCategory']);
+            
+            $rssCategoryManager = new \Project\Model\RssCategoryManager();
+            $request = $rssCategoryManager->categoryRssControl($idCategory);
+
+            while ($db1 = $request->fetch()) {
+                $idRss = htmlspecialchars($db1['idRss']);
+                $deffineManager = new \Project\Model\DeffineManager();
+                $deffineManager->deffineSupress($idRss);
+
+                $rssManager = new \Project\Model\RssManager();
+                $rssManager->supressRss($idRss);
+            }
+
+            $rssCategoryManager = new \Project\Model\RssCategoryManager();
+            $request = $rssCategoryManager->categoryRssSupress($idCategory);
+
+            echo '<h3 class="validate">Catégorie suprimé avec succès... !</h3>';
+            $userConnectedController = new \Project\Controller\UserConnectedController();
+            $userConnectedController->rssManagement();
+        }
+
+        //Cercle Link Leave +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        function cercleLeave() {
+            $idAccount = htmlspecialchars($_SESSION['rssManagerId']);
+            $idCircleLink = htmlspecialchars($_GET['idCircleLink']);
+
+            $connectManager = new \Project\Model\ConnectManager();
+            $connectManager->connectLeave($idAccount,$idCircleLink);
+
+            $connectManager = new \Project\Model\ConnectManager();
+            $request = $connectManager->connectControl($idCircleLink);
+
+            $result = $request->fetch();
+
+            if($result == '') {
+                $cercleLinkManager = new \Project\Model\CercleLinkMAnager();
+                $cercleLinkManager->cercleLinkSupress($idCircleLink);
+            }
+
+            echo '<h3 class="validate">Cercle Quité avec succès... !</h3>';
+            $userConnectedController = new \Project\Controller\UserConnectedController();
+            $userConnectedController->rssManagement();
+        }
     } 

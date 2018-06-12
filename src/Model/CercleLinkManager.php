@@ -46,7 +46,7 @@
             return $request;
         }
 
-        //Cercle Link Control ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        //Cercle Link Name Request +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         function cercleNameRequest($idCircleLink) {
             // Data Base Connection
             $db=$this->dbConnect();
@@ -55,5 +55,14 @@
             $requestSecond -> execute(array($idCircleLink));
 
             return $requestSecond;
+        }
+
+        //Cercle Link Supress ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        function cercleLinkSupress($idCircleLink) {
+            // Data Base Connection
+            $db=$this->dbConnect();
+            // Connect supress 
+            $request = $db->prepare('DELETE FROM cerclelink WHERE idCercleLink = ?');
+            $request -> execute(array($idCircleLink));
         }
     }

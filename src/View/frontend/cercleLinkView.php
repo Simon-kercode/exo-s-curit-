@@ -43,6 +43,7 @@
             ?>
         </div>
     </div>
+    <a href="index.php?action=leaveCercle&idCircleLink=<?=htmlspecialchars($_GET['idCircleLink'])?>" type="button" class="btn btn-danger">Quitter le cercle</a>
 </div>
 
 <!-- Card CommentBox +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
