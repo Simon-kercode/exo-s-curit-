@@ -129,7 +129,7 @@
             return $request;
         }
 
-        //Invite Request second +++++++++++++++++++++++++++++++++++++++++++++++++++++
+        //Invite Request second ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         function inviteRequestSecond($idAccount) {
             // Data Base Connection
             $db=$this->dbConnect();
@@ -147,5 +147,25 @@
             // Comments Update
             $request = $db->prepare('UPDATE accounts SET warningAccount=warningAccount + 1 WHERE pseudoAccount = ?');
             $request -> execute(array($pseudoAccount));
+        }
+
+        //Account Count ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        function accountCount() {
+            // Data Base Connection
+            $db=$this->dbConnect();
+            // Account count 
+            $request = $db->query('SELECT COUNT(*) FROM accounts');
+
+            return $request;
+        }
+
+        //Account Warning Count ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        function accountWarningCount() {
+            // Data Base Connection
+            $db=$this->dbConnect();
+            // Account count 
+            $requestSeconde = $db->query('SELECT COUNT(*) FROM accounts WHERE warningAccount != 0');
+
+            return $requestSeconde;
         }
     }

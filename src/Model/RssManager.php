@@ -65,4 +65,15 @@
             $request = $db->prepare('DELETE FROM rss WHERE idRss = ?');
             $request -> execute(array($idRss));
         }
+
+        //RSS Light +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        function rssLight() {
+            // Data Base Connection
+            $db=$this->dbConnect();
+            // RSS Light 
+            $requestFirst = $db->prepare('SELECT * FROM rss WHERE momentRss = ?');
+            $requestFirst-> execute(array("Light"));
+
+            return $requestFirst;
+        }
     }

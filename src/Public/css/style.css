@@ -1,6 +1,14 @@
+/* Reset +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+body{
+    padding: 0px !important;
+}
+section{
+    padding: 0px 20px;
+}
+
 /* Background animated +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 body{
-    height: 100vh;
+    height: 100%;
     background: linear-gradient(120deg, #8509be, #ff7c0d);
     background-size: 400% 400%;
     animation: BackgroundAnimation 30s ease infinite;

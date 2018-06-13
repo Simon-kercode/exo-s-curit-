@@ -7,7 +7,12 @@
 
         //Index View ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         function index() {
-            $url = "https://www.cert.ssi.gouv.fr/feed/"; /* URL Flux RSS */
+            $rssManager = new \Project\Model\RssManager();
+            $requestFirst = $rssManager->rssLight();
+
+            $resultFirst = $requestFirst->fetch();
+            
+            $url = htmlspecialchars($resultFirst['urlRss']);
             $rss = simplexml_load_file($url);
             $i = 0;
             

@@ -11,6 +11,8 @@
 
         $allUserController = new \Project\Controller\AllUserController();
         $userConnectedController = new \Project\Controller\UserConnectedController();
+        $adminController = new \Project\Controller\AdminController();
+
         //Action GET and ID GET +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         if(isset($_GET['action']) && isset($_GET['idCircleLink']) && isset($_GET['idInvitation'])) {
 #UserCo     //Invitation Accept ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -334,33 +336,43 @@
                 throw new Exception('Variable inattendu');
             }
         }
-        //Action GET ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        //Action GET +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         elseif(isset($_GET['action'])) {
-#AllUser    //Inscription View ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    
+#AllUser    //Inscription View +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    
             if($_GET['action'] === 'inscription') {
                 $allUserController->inscription();
             }
-#AllUser    //Connection View ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+#AllUser    //Connection View ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
             elseif($_GET['action'] === 'connection') {
                 $allUserController->connection();
             }
-#UserCo     //Profil Management View +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+#UserCo     //Profil Management View +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
             elseif($_GET['action'] === 'accountManagement') {
                 $userConnectedController->accountManagement();
             }
-#UserCo     //Avatar Management ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+#UserCo     //Avatar Management ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
             elseif($_GET['action'] === 'uploadAvatar') {
                 $userConnectedController->avatarUpload();
             }
-#UserCo     //Rss Management View ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+#UserCo     //Rss Management View ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
             elseif($_GET['action'] === 'rssManagement') {
                 $userConnectedController->rssManagement();
             }
-#UserCo     //Invitation Management View ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+#UserCo     //Invitation Management View +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
             elseif($_GET['action'] === 'inviteManagement') {
                 $userConnectedController->invitationView();
-            }                                     
-            //Exception ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+            }
+#Admin      //Panel Admin ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+            elseif($_GET['action'] === 'admin') {
+                if($_SESSION['rssManagerStatus'] === 'Admin' || $_SESSION['rssManagerStatus'] === 'SU') {
+                    $adminController->adminView();
+                }
+                //Exception ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                else {
+                    throw new Exception('Variable inattendu');
+                }
+            }                                       
+            //Exception ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
             else {
                 throw new Exception('Variable inattendu');
             }
