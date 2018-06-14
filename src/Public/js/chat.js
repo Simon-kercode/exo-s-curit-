@@ -26,7 +26,6 @@ var Chat = {
 
             var navbarBrandElt = document.createElement("a");
             navbarBrandElt.setAttribute("id","navbarBrand"+i);
-            navbarBrandElt.setAttribute("href","#");
             navbarBrandElt.setAttribute("class","navbar-brand");
 
             var imageCardElt = document.createElement("img");

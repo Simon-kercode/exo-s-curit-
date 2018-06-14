@@ -168,4 +168,71 @@
 
             return $requestSeconde;
         }
+
+        //Account Warning request +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        function accountWarningRequest() {
+            // Data Base Connection
+            $db=$this->dbConnect();
+            // Account request 
+            $request = $db->query('SELECT * FROM accounts WHERE warningAccount > 0 ORDER BY warningAccount DESC');
+
+            return $request;
+        }
+
+        //Reset Warning ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        function resetWarning($idAccount) {            
+            // Data Base Connection
+            $db=$this->dbConnect();
+            // Account update 
+            $request = $db->prepare('UPDATE accounts SET warningAccount=? WHERE idAccount=?');
+            $request -> execute(array(0,$idAccount));            
+        }
+
+        //Bann Account +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        function accountBann($idAccount) {            
+            // Data Base Connection
+            $db=$this->dbConnect();
+            // Account update 
+            $request = $db->prepare('UPDATE accounts SET statusAccount=? WHERE idAccount=?');
+            $request -> execute(array("Bann",$idAccount));            
+        }
+
+        //User to Admin Account +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        function userAdmin($idAccount) {            
+            // Data Base Connection
+            $db=$this->dbConnect();
+            // Account update 
+            $request = $db->prepare('UPDATE accounts SET statusAccount=? WHERE idAccount=?');
+            $request -> execute(array("Admin",$idAccount));            
+        }
+
+        //Admin to User Account +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        function adminUser($idAccount) {            
+            // Data Base Connection
+            $db=$this->dbConnect();
+            // Account update 
+            $request = $db->prepare('UPDATE accounts SET statusAccount=? WHERE idAccount=?');
+            $request -> execute(array("User",$idAccount));            
+        }
+
+        //All Account +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        function allAccount($first,$second) {
+            // Data Base Connection
+            $db=$this->dbConnect();
+            // Account request 
+            $request = $db->prepare('SELECT * FROM accounts WHERE statusAccount != ? ORDER BY pseudoAccount LIMIT '.$first.','.$second);
+            $request -> execute(array("SU"));
+
+            return $request;
+        }
+
+        function allAccountCount() {
+            // Data Base Connection
+            $db=$this->dbConnect();
+            // Account request 
+            $requestFirst = $db->prepare('SELECT COUNT(*) FROM accounts WHERE statusAccount != ?');
+            $requestFirst -> execute(array("SU"));
+
+            return $requestFirst;
+        }
     }

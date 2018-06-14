@@ -20,3 +20,49 @@ body{
     color:#8509be;
     font-family: 'Skranji', cursive;
 }
+
+/* Warning Card ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+.card .navbar-brand{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.card .navbar-brand p{
+    margin-left: 12px;
+    font-size: 1.25em;
+    color:#8509be;
+    font-family: 'Skranji', cursive;
+}
+
+.cardWarning{
+    margin-bottom: 20px;
+}
+
+/* Account Card +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+.admin{
+    background-color: aqua;
+}
+
+.user{
+    background-color: chartreuse;
+}
+
+.bann{
+    background-color: crimson;
+}
+
+.cardAccount h6{
+    font-size: 2em;
+}
+
+/* Error  and Validate +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+.error{
+    background-color: black;
+    color: red;
+}
+
+.validate{
+    background-color: #7bff00;
+    color: white;
+}

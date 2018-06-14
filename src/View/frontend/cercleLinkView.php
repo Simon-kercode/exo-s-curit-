@@ -58,7 +58,7 @@
                 echo '    
                     <div class="card cardComment">
                         <div class="card-header">
-                            <a class="navbar-brand" href="index.php?action=accountManagement">
+                            <a class="navbar-brand">
                                 <img width="30" height="30" alt="" src="src/public/images/'. $db2['avatarAccount'] . '" alt="Avatar" />
                                 <p>'.htmlspecialchars($db2['pseudoAccount']).'</p>
                             </a>

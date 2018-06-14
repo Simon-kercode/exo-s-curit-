@@ -14,13 +14,13 @@
     <h2 class="display-4">Comptes signalés</h2>
     <p class="lead">Nombre de comptes signalés: <span class="warning"><?=htmlspecialchars($resultSeconde[0])?></span> !</p>
     <hr class="my-4">
-    <a class="btn btn-primary btn-lg" href="#" role="button">Gérer les Signalement!</a>
+    <a class="btn btn-primary btn-lg" href="index.php?action=warningBack" role="button">Gérer les Signalement!</a>
 </div>
 <div class="jumbotron">
     <h2 class="display-4">Comptes exitant</h2>
     <p class="lead">Nombre de compte existant: <span class="warning"><?=htmlspecialchars($result[0])?></span> !</p>
     <hr class="my-4">
-    <a class="btn btn-primary btn-lg" href="#" role="button">Gérer les Comptes</a>
+    <a class="btn btn-primary btn-lg" href="index.php?action=accountBack&page=1" role="button">Gérer les Comptes</a>
 </div>
 <div class="jumbotron">
     <h2 class="display-4">RSS du Moment</h2>

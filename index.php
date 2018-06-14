@@ -337,6 +337,80 @@
             }
         }
         //Action GET +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        elseif(isset($_GET['action']) && isset($_GET['idAccount'])) {
+#Admin      //Reset Count Warning ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+            if($_GET['action'] === 'resetCountWarning' && $_GET['idAccount'] != '') {
+                if($_SESSION['rssManagerStatus'] === 'Admin' || $_SESSION['rssManagerStatus'] === 'SU') {
+                    $adminController->resetCountWarning();
+                }
+                //Exception ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                else {
+                    throw new Exception('Variable inattendu');
+                }
+            }
+#Admin      //Supress Target Account Comment +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+            elseif($_GET['action'] === 'targetCommentSupress' && $_GET['idAccount'] != '') {
+                if($_SESSION['rssManagerStatus'] === 'Admin' || $_SESSION['rssManagerStatus'] === 'SU') {
+                    $adminController->supressTargetComment();
+                }
+                //Exception ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                else {
+                    throw new Exception('Variable inattendu');
+                }
+            }
+#Admin      //Bann Account ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+            elseif($_GET['action'] === 'bann' && $_GET['idAccount'] != '') {
+                if($_SESSION['rssManagerStatus'] === 'Admin' || $_SESSION['rssManagerStatus'] === 'SU') {
+                    $adminController->bannAccount();
+                }
+                //Exception ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                else {
+                    throw new Exception('Variable inattendu');
+                }
+            }
+#Admin      //User to Admin ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+            elseif($_GET['action'] === 'userToAdmin' && $_GET['idAccount'] != '') {
+                if($_SESSION['rssManagerStatus'] === 'Admin' || $_SESSION['rssManagerStatus'] === 'SU') {
+                    $adminController->userToAdmin();
+                }
+                //Exception ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                else {
+                    throw new Exception('Variable inattendu');
+                }
+            }
+#Admin      //Admin to User ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+            elseif($_GET['action'] === 'adminToUser' && $_GET['idAccount'] != '') {
+                if($_SESSION['rssManagerStatus'] === 'Admin' || $_SESSION['rssManagerStatus'] === 'SU') {
+                    $adminController->adminToUser();
+                }
+                //Exception ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                else {
+                    throw new Exception('Variable inattendu');
+                }
+            }
+            //Exception ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+            else {
+                throw new Exception('Variable inattendu');
+            }
+        }
+        //Action GET +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        elseif(isset($_GET['action']) && isset($_GET['page'])) {
+#Admin      //Account Management Admin +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+            if($_GET['action'] === 'accountBack' && $_GET['page'] != '') {
+                if($_SESSION['rssManagerStatus'] === 'Admin' || $_SESSION['rssManagerStatus'] === 'SU') {
+                    $adminController->accountBackView();
+                }
+                //Exception ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                else {
+                    throw new Exception('Variable inattendu');
+                }
+            } 
+            //Exception ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+            else {
+                throw new Exception('Variable inattendu');
+            }
+        } 
+        //Action GET +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         elseif(isset($_GET['action'])) {
 #AllUser    //Inscription View +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    
             if($_GET['action'] === 'inscription') {
@@ -371,7 +445,17 @@
                 else {
                     throw new Exception('Variable inattendu');
                 }
-            }                                       
+            } 
+#Admin      //Warning Panel Admin ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+            elseif($_GET['action'] === 'warningBack') {
+                if($_SESSION['rssManagerStatus'] === 'Admin' || $_SESSION['rssManagerStatus'] === 'SU') {
+                    $adminController->warningBackView();
+                }
+                //Exception ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                else {
+                    throw new Exception('Variable inattendu');
+                }
+            }                                     
             //Exception ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
             else {
                 throw new Exception('Variable inattendu');
