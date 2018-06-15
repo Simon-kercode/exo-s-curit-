@@ -36,7 +36,7 @@
                             <a class="nav-link" href="index.php?action=accountBack&page=1">Comptes <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">RSS du moment <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="index.php?action=rssLightView">RSS du moment <span class="sr-only">(current)</span></a>
                         </li>
                     </ul>
                 </div>

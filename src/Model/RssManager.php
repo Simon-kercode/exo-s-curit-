@@ -76,4 +76,13 @@
 
             return $requestFirst;
         }
+
+        //RSS Light Update ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        function lightRssUpdate($urlRss,$nameRss) {
+            // Data Base Connection
+            $db=$this->dbConnect();
+            // Account update 
+            $request = $db->prepare('UPDATE rss SET urlRss=?, nameRss=? WHERE momentRss = ?');
+            $request -> execute(array($urlRss,$nameRss,"Light")); 
+        }
     }

@@ -120,4 +120,26 @@
             $adminController->adminView();
         }
 
+        //Rss Light View +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        function rssLightView() {
+            $rssManager = new \Project\Model\RssManager();
+            $requestFirst = $rssManager->rssLight();
+
+            $result = $requestFirst->fetch();
+
+            require('src/view/backend/rssLightView.php');
+        }
+
+        //RSS Light Admin +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        function rssLightUpdate() {
+            $nameRss = htmlspecialchars($_POST['rssLight']);
+            $urlRss = htmlspecialchars($_POST['rssUrlLight']);
+
+            $rssManager = new \Project\Model\RssManager();
+            $rssManager->lightRssUpdate($urlRss,$nameRss);
+
+            $adminController = new \Project\Controller\AdminController();
+            $adminController->adminView();
+
+        }
     }

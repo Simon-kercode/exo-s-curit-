@@ -135,4 +135,9 @@
                 }
             }
         }
+        
+        //Legit View ++++++++++++++++++++++++++++++++++++++++++++++++++++
+        function legitView() {
+            require('src/view/frontend/legitView.php');
+        }
     }

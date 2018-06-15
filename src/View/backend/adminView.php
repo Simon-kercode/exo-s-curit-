@@ -26,7 +26,7 @@
     <h2 class="display-4">RSS du Moment</h2>
     <p class="lead"><span class="warning"><?=htmlspecialchars($resultFirst['nameRss'])."</span> ".htmlspecialchars($resultFirst['urlRss'])?></p>
     <hr class="my-4">
-    <a class="btn btn-primary btn-lg" href="#" role="button">Changer le RSS</a>
+    <a class="btn btn-primary btn-lg" href="index.php?action=rssLightView" role="button">Changer le RSS</a>
 </div>
 
 <?php

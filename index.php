@@ -240,9 +240,31 @@
                         throw new Exception('Champs manquants');
                     }
                 }
-                //Exception ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                //Exception ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
                 else {
                     throw new Exception('Champs manquants');
+                }
+            }
+#Admin      //RSS Light Update +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+            elseif($_GET['action'] === 'rssLight' && $_GET['db'] === 'ok') {
+                if($_SESSION['rssManagerStatus'] === 'Admin' || $_SESSION['rssManagerStatus'] === 'SU') {
+                    if(isset($_POST['rssLight']) && isset($_POST['rssUrlLight'])) {
+                        if($_POST['rssLight'] != '' && $_POST['rssUrlLight']) {
+                            $adminController->rssLightUpdate();
+                        }
+                        //Exception ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                        else {
+                            throw new Exception('Champs manquants');
+                        }
+                    }
+                    //Exception ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                    else {
+                        throw new Exception('Variable inattendu');
+                    }
+                }
+                //Exception ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                else {
+                    throw new Exception('Variable inattendu');
                 }
             }
             //Exception ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -455,15 +477,28 @@
                 else {
                     throw new Exception('Variable inattendu');
                 }
-            }                                     
+            } 
+#Admin      //RSS Light ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+            elseif($_GET['action'] === 'rssLightView') {
+                if($_SESSION['rssManagerStatus'] === 'Admin' || $_SESSION['rssManagerStatus'] === 'SU') {
+                    $adminController->rssLightView();
+                }
+                //Exception ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                else {
+                    throw new Exception('Variable inattendu');
+                } 
+            }
+#AllUser    //Legit View +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+            elseif($_GET['action'] === 'legit') {
+                $allUserController->legitview();
+            }                                           
             //Exception ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
             else {
                 throw new Exception('Variable inattendu');
             }
         }
-
         else{
-#AllUser    //Index View ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+#AllUser    //Index View +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
             $allUserController->index();
         }
     }

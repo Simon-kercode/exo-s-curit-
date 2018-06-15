@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  mer. 30 mai 2018 à 16:05
--- Version du serveur :  10.1.31-MariaDB
--- Version de PHP :  7.2.4
+-- Généré le :  ven. 15 juin 2018 à 14:27
+-- Version du serveur :  10.1.32-MariaDB
+-- Version de PHP :  7.2.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -34,7 +34,8 @@ CREATE TABLE `accounts` (
   `emailAccount` varchar(60) NOT NULL,
   `avatarAccount` varchar(275) NOT NULL,
   `statusAccount` varchar(25) NOT NULL,
-  `passAccount` varchar(255) NOT NULL
+  `passAccount` varchar(255) NOT NULL,
+  `warningAccount` int(60) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -71,8 +72,8 @@ CREATE TABLE `comments` (
   `idComment` int(11) NOT NULL,
   `contentComment` varchar(1000) NOT NULL,
   `dateComment` datetime NOT NULL,
-  `idRss` int(11) NOT NULL,
-  `idAccount` int(11) NOT NULL
+  `idAccount` int(11) NOT NULL,
+  `idCercleLink` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -106,7 +107,8 @@ CREATE TABLE `deffine` (
 CREATE TABLE `invitation` (
   `idInvitation` int(11) NOT NULL,
   `contentInvitation` varchar(275) NOT NULL,
-  `dateInvitation` date NOT NULL
+  `dateInvitation` date NOT NULL,
+  `idCercleLink` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -129,8 +131,16 @@ CREATE TABLE `invite` (
 CREATE TABLE `rss` (
   `idRss` int(11) NOT NULL,
   `urlRss` varchar(275) NOT NULL,
-  `nameRss` varchar(275) NOT NULL
+  `nameRss` varchar(275) NOT NULL,
+  `momentRss` varchar(60) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `rss`
+--
+
+INSERT INTO `rss` (`idRss`, `urlRss`, `nameRss`, `momentRss`) VALUES
+(6, 'https://www.cert.ssi.gouv.fr/feed/', 'ANSSI', 'Light');
 
 -- --------------------------------------------------------
 
@@ -172,8 +182,8 @@ ALTER TABLE `chats`
 --
 ALTER TABLE `comments`
   ADD PRIMARY KEY (`idComment`),
-  ADD KEY `FK_comments_idRss` (`idRss`),
-  ADD KEY `FK_comments_idAccount` (`idAccount`);
+  ADD KEY `FK_comments_idAccount` (`idAccount`),
+  ADD KEY `FK_comments_idCercleLink` (`idCercleLink`);
 
 --
 -- Index pour la table `connect`
@@ -193,7 +203,8 @@ ALTER TABLE `deffine`
 -- Index pour la table `invitation`
 --
 ALTER TABLE `invitation`
-  ADD PRIMARY KEY (`idInvitation`);
+  ADD PRIMARY KEY (`idInvitation`),
+  ADD KEY `FK_invitation_idCercleLink` (`idCercleLink`);
 
 --
 -- Index pour la table `invite`
@@ -223,43 +234,43 @@ ALTER TABLE `rsscategories`
 -- AUTO_INCREMENT pour la table `accounts`
 --
 ALTER TABLE `accounts`
-  MODIFY `idAccount` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idAccount` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT pour la table `cerclelink`
 --
 ALTER TABLE `cerclelink`
-  MODIFY `idCercleLink` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idCercleLink` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT pour la table `chats`
 --
 ALTER TABLE `chats`
-  MODIFY `idChat` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idChat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT pour la table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `idComment` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idComment` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT pour la table `invitation`
 --
 ALTER TABLE `invitation`
-  MODIFY `idInvitation` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idInvitation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT pour la table `rss`
 --
 ALTER TABLE `rss`
-  MODIFY `idRss` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idRss` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT pour la table `rsscategories`
 --
 ALTER TABLE `rsscategories`
-  MODIFY `idRssCategory` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idRssCategory` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Contraintes pour les tables déchargées
@@ -276,7 +287,7 @@ ALTER TABLE `chats`
 --
 ALTER TABLE `comments`
   ADD CONSTRAINT `FK_comments_idAccount` FOREIGN KEY (`idAccount`) REFERENCES `accounts` (`idAccount`),
-  ADD CONSTRAINT `FK_comments_idRss` FOREIGN KEY (`idRss`) REFERENCES `rss` (`idRss`);
+  ADD CONSTRAINT `FK_comments_idCercleLink` FOREIGN KEY (`idCercleLink`) REFERENCES `cerclelink` (`idCercleLink`);
 
 --
 -- Contraintes pour la table `connect`
@@ -291,6 +302,12 @@ ALTER TABLE `connect`
 ALTER TABLE `deffine`
   ADD CONSTRAINT `FK_deffine_idRss` FOREIGN KEY (`idRss`) REFERENCES `rss` (`idRss`),
   ADD CONSTRAINT `FK_deffine_idRssCategory` FOREIGN KEY (`idRssCategory`) REFERENCES `rsscategories` (`idRssCategory`);
+
+--
+-- Contraintes pour la table `invitation`
+--
+ALTER TABLE `invitation`
+  ADD CONSTRAINT `FK_invitation_idCercleLink` FOREIGN KEY (`idCercleLink`) REFERENCES `cerclelink` (`idCercleLink`);
 
 --
 -- Contraintes pour la table `invite`
