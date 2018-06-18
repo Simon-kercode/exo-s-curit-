@@ -43,7 +43,7 @@
             ?>
         </div>
     </div>
-    <a href="index.php?action=supressCategory&idCategory=<?=htmlspecialchars($_GET['idCategoryRss'])?>" type="button" class="btn btn-danger">Supprimer la Category</a>
+    <a href="index.php?action=supressCategory&idCategory=<?=htmlspecialchars($_GET['idCategoryRss'])?>" type="button" class="btn btn-danger">Supprimer la Categorie</a>
 </div>
 
 <?php

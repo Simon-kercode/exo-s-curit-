@@ -4,7 +4,7 @@
 
 <!-- Welcome message +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 <div class="alert welcome" id="up" role="alert">
-    <h1 class="alert-heading">Gestion de Profile</h1>
+    <h1 class="alert-heading">Gestion de Profil</h1>
     <hr>
     <p class="mb-0">Gérez vos informations !</p>
 </div>
@@ -62,15 +62,15 @@
                 <form action="index.php?action=passwordManagement&db=ok" id="inscriptionForm" method="post">
                     <div class="form-group">
                         <label for="oldPassword">Ancien Mot de passe</label>
-                        <input type="password" class="form-control" name="oldPassword" id="oldPassword" placeholder="Votre Ancient Mot de Passe">
+                        <input type="password" class="form-control" name="oldPassword" id="oldPassword" placeholder="Votre Ancien Mot de Passe">
                     </div>
                     <div class="form-group">
                         <label for="password">Nouveau Mot de passe</label>
                         <input type="password" class="form-control" name="password" id="password" placeholder="Votre Nouveau Mot de Passe">
-                        <small id="password" class="form-text text-muted">Votre mot de passe doit comporter au minimum: 8 charactères, 1 chiffre, 1 minuscule, 1 majuscule</small>
+                        <small id="password" class="form-text text-muted">Votre mot de passe doit comporter au minimum: 8 caractères, 1 chiffre, 1 minuscule, 1 majuscule</small>
                     </div>
                     <div class="form-group">
-                        <label for="passwordComp">Controle du Nouveau Mot de passe</label>
+                        <label for="passwordComp">Contrôle du Nouveau Mot de passe</label>
                         <input type="password" class="form-control" name="passwordComp" id="passwordComp" placeholder="Retapez votre Nouveau Mot de passe">
                     </div>
                     <button type="submit" class="btn btn-primary">Envoyer</button>
@@ -94,7 +94,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        Vous êtes sur le point de supprimer votre compte, ce qui aura pour effet d'arréter le service dont vous bénificiez.
+                        Vous êtes sur le point de supprimer votre compte, ce qui aura pour effet d'arrêter le service dont vous bénificiez.
                         <hr>
                         Voulez-vous vraiment supprimer votre compte?
                     </div>
@@ -105,7 +105,7 @@
                                 <input type="password" class="form-control" name="passwordDel" id="passwordDel" placeholder="Entrez votre Mot de passe">
                             </div>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Ne pas supprimer mon compte</button>
-                            <button type="submit" class="btn btn-danger">Supprimmer mon compte</button>
+                            <button type="submit" class="btn btn-danger">Supprimer mon compte</button>
                         </form>
                     </div>
                 </div>
@@ -113,7 +113,7 @@
         </div>
     </div>
     <div class="card-footer text-muted">
-        Conformément à la RGPD en vigueur depuis le 25/05/2018, vos données transmise ne seront ni utilisé à but ciblage comercial, ni revendu à d'autre organisme. La supression de votre compte aura belle et bien la finalité de la destruction total de vos données.
+        Conformément à la RGPD en vigueur depuis le 25/05/2018, vos données transmises ne seront ni utilisées à but ciblage comercial, ni revendues à d'autres organismes. La supression de votre compte aura bel et bien la finalité de la destruction totale de vos données.
     </div>
 </div>
 

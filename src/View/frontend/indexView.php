@@ -5,9 +5,9 @@
 <!-- Welcome message +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 <div class="alert welcome" id="up" role="alert">
     <h1 class="alert-heading">Flux RSS Manager</h1>
-    <p>Le premier réseau social de veille partagé...</p>
+    <p>Le premier réseau social de veille partagée...</p>
     <hr>
-    <p class="mb-0">Gérrez &amp; Partagez vos Flux RSS!</p>
+    <p class="mb-0">Gérez &amp; Partagez vos Flux RSS!</p>
 </div>
 
 <!-- Button trigger modal ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
@@ -53,7 +53,7 @@
 <div class="card chatBox content">
     <h2 class="card-header">ChatBox :</h2>
     <div class="card-body scroll">
-        <h5 class="card-title">Venez discutez du Flux RSS du jours!</h5>
+        <h5 class="card-title">Venez discuter du Flux RSS du jour!</h5>
         <hr class="my-4" >
         <!-- Card Comment +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->        
         <div id="articles"></div>       

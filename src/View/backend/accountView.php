@@ -28,7 +28,7 @@
                     }    
                 echo '        
                             <a class="navbar-brand">
-                                <img width="30" height="30" alt="Avatar" src="src/public/images/'.htmlspecialchars($db1['avatarAccount']).'" />
+                                <img width="30" height="30" alt="Avatar" src="src/Public/images/'.htmlspecialchars($db1['avatarAccount']).'" />
                                 <p>'.htmlspecialchars($db1['pseudoAccount']).'</p>
                             </a>
                         </div>

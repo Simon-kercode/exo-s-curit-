@@ -23,7 +23,7 @@
     <div class="form-group">
         <label for="password">Mot de Passe*</label>
         <input type="password" class="form-control" name="password" id="password" placeholder="Votre Mot de Passe">
-        <small id="password" class="form-text text-muted">Votre mot de passe doit comporter au minimum: 8 charactères, 1 chiffre, 1 minuscule, 1 majuscule</small>
+        <small id="password" class="form-text text-muted">Votre mot de passe doit comporter au minimum: 8 caractères, 1 chiffre, 1 minuscule, 1 majuscule</small>
     </div>
     <div class="form-group">
         <label for="passwordComp">Retapez votre Mot de Passe*</label>

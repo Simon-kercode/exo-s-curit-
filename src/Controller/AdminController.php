@@ -120,6 +120,18 @@
             $adminController->adminView();
         }
 
+        //Bann to User +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        function bannToUser() {
+            $idAccount = htmlspecialchars($_GET['idAccount']);
+
+            $accountManager = new \Project\Model\AccountManager();
+            $accountManager->adminUser($idAccount);
+
+            echo '<h3 class="validate">Réincorporation réalisé avec succès... !</h3>';
+            $adminController = new \Project\Controller\AdminController();
+            $adminController->adminView();
+        }
+
         //Rss Light View +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         function rssLightView() {
             $rssManager = new \Project\Model\RssManager();

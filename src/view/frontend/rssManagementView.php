@@ -6,7 +6,7 @@
 <div class="alert welcome" id="up" role="alert">
     <h1 class="alert-heading">Gestion RSS</h1>
     <hr>
-    <p class="mb-0">Gérrez, Visualisez &amp; Partagez vos Flux RSS!</p>
+    <p class="mb-0">Gérez, Visualisez &amp; Partagez vos Flux RSS!</p>
 </div>
 
 <!-- Collapse +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->

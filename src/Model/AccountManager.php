@@ -215,6 +215,15 @@
             $request -> execute(array("User",$idAccount));            
         }
 
+        //Bann to User Account ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        function bannToUser($idAccount) {
+            // Data Base Connection
+            $db=$this->dbConnect();
+            // Account update 
+            $request = $db->prepare('UPDATE accounts SET statusAccount=? WHERE idAccount=?');
+            $request -> execute(array("User",$idAccount));
+        }
+
         //All Account +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         function allAccount($first,$second) {
             // Data Base Connection

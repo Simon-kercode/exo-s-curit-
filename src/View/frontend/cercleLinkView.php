@@ -6,7 +6,7 @@
 <div class="alert welcome" id="up" role="alert">
     <h1 class="alert-heading"><?=htmlspecialchars($result['nameCircle'])?></h1>
     <hr>
-    <p class="mb-0">Partagez votres Veilles</p>
+    <p class="mb-0">Partagez votre Veille</p>
 </div>
 
 <!-- Card Columns +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
@@ -50,7 +50,7 @@
 <div class="card chatBox content">
     <h2 class="card-header">CommentBox :</h2>
     <div class="card-body scroll">
-        <h5 class="card-title">Venez discutez de vos veilles!</h5>
+        <h5 class="card-title">Venez discuter de vos veilles!</h5>
         <hr class="my-4" >
         <!-- card +++++++++++++++++++++++++++++++++++++++++++ -->
         <?php    
@@ -59,7 +59,7 @@
                     <div class="card cardComment">
                         <div class="card-header">
                             <a class="navbar-brand">
-                                <img width="30" height="30" alt="" src="src/public/images/'. $db2['avatarAccount'] . '" alt="Avatar" />
+                                <img width="30" height="30" alt="" src="src/Public/images/'. $db2['avatarAccount'] . '" alt="Avatar" />
                                 <p>'.htmlspecialchars($db2['pseudoAccount']).'</p>
                             </a>
                         </div>

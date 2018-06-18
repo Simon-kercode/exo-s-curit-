@@ -121,7 +121,7 @@
                 <div class="card-header">
                     <ul class="nav nav-tabs card-header-tabs">
                         <li class="nav-item">
-                            <a class="nav-link" href="index.php?action=legit">Mentions légals</a>
+                            <a class="nav-link" href="index.php?action=legit">Mentions légales</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link disabled" href="#up">&uarr; Up</a>

@@ -19,7 +19,7 @@
                     <div class="card cardWarning">
                         <div class="card-header">
                             <a class="navbar-brand">
-                                <img width="30" height="30" alt="Avatar" src="src/public/images/'.htmlspecialchars($db1['avatarAccount']).'" />
+                                <img width="30" height="30" alt="Avatar" src="src/Public/images/'.htmlspecialchars($db1['avatarAccount']).'" />
                                 <p>'.htmlspecialchars($db1['pseudoAccount']).'</p>
                             </a>
                         </div>
@@ -28,8 +28,8 @@
                             <h6 class="card-text">'.htmlspecialchars($db1['statusAccount']).'</h6>
                             <hr>
                             <p>A été signalé: <span class="warning">'.htmlspecialchars($db1['warningAccount']).'</span> fois !</p>
-                            <a href="index.php?action=resetCountWarning&idAccount='.htmlspecialchars($db1['idAccount']).'" class="btn btn-primary">RàZ du conteur</a>
-                            <a href="index.php?action=targetCommentSupress&idAccount='.htmlspecialchars($db1['idAccount']).'" class="btn btn-warning">Suprimer tout ses commentaires et chats</a>
+                            <a href="index.php?action=resetCountWarning&idAccount='.htmlspecialchars($db1['idAccount']).'" class="btn btn-primary">RàZ du compteur</a>
+                            <a href="index.php?action=targetCommentSupress&idAccount='.htmlspecialchars($db1['idAccount']).'" class="btn btn-warning">Suprimer tous ses commentaires et chats</a>
                             <a href="index.php?action=bann&idAccount='.htmlspecialchars($db1['idAccount']).'" class="btn btn-danger">Bannir le compte</a>
                         </div>
                     </div>

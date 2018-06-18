@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<?php $title = "Flux RSS Manager, Mention Légale"; ?>
+<?php $title = "Flux RSS Manager, Mentions Légales"; ?>
 <?php ob_start(); ?>
 
 <!-- Welcome message +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
