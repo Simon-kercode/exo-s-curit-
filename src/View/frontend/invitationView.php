@@ -52,7 +52,7 @@
                 echo '
                     <div class="card border-primary invitCard">
                         <div class="card-body">
-                            <h4 class="card-title"><span class="invitCardText">'.htmlspecialchars($db1['pseudoAccount']).'</span> vous invite à rejoindre le Cercle : <span class="invitCardText">'.htmlspecialchars($db1['nameCircle']).'</span> </h4>
+                            <h4 class="card-title"><span class="invitCardText">'.htmlspecialchars($db1['pseudoAccount']).'</span> vous êtes invité à rejoindre le Cercle : <span class="invitCardText">'.htmlspecialchars($db1['nameCircle']).'</span> </h4>
                             <p class="card-text">'.htmlspecialchars($db1['contentInvitation']).'
                                 <hr>
                                 '.htmlspecialchars($db1['dateInvitation']).'
